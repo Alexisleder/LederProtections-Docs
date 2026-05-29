@@ -17,6 +17,12 @@ The plugin uses **WorldGuard** as the region backend, but includes its own custo
 
 ---
 
+## Wiki
+
+LederProtections wiki: https://github.com/Alexisleder/LederProtections-Docs/wiki
+
+---
+
 ## Main Features
 
 - Configurable protection stones
