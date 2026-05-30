@@ -158,7 +158,16 @@ This repository is currently used for:
 LederProtections is currently distributed as a private-source project.
 
 Unless a license is explicitly provided, all rights are reserved by the author.
+---
+## Why isn’t LederProtections open source yet?
 
+Good question! LederProtections may become open source in the future, but for now I want to keep polishing the plugin until it is more stable, secure and complete.
+
+My goal is to build a premium-quality protection plugin that server owners can use for free, with strong performance, anti-exploit checks, clean GUIs, WorldGuard support, economy features and a simple experience for players.
+
+Since the project is still in beta, I also want to protect the work from being copied, reuploaded, sold, or modified in a low-quality way before it is fully ready.
+
+For now, LederProtections is free to use but not open source yet. In the future, once the project is more mature, I may consider releasing the source code under clear terms.
 ---
 
 ## Brand
