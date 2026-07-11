@@ -1,5 +1,32 @@
 # Changelog
 
+## LederProtections v1.1.0
+
+### Added
+- Added ProtectionStones migration tools.
+- Added `/lep migrate protectionstones scan`.
+- Added `/lep migrate protectionstones import --dry-run`.
+- Added `/lep migrate protectionstones import`.
+- Added single-region migration support with `--region`.
+- Added strict exact-radius migration by default.
+- Added missing-tier detection and suggested `stones.yml` generation.
+- Added ProtectionStones custom name migration from `ps-name`.
+- Added cleanup of old ProtectionStones greeting/farewell WorldGuard flags.
+- Added automatic safe source-stone conversion to LederProtections stone materials.
+- Added `--keep-source-stones`.
+- Added native LederProtections export/import commands.
+
+### Changed
+- ProtectionStones migration now skips unmatched radii by default instead of resizing protections.
+- `--mode nearest` remains available for advanced migrations, but may resize protections.
+- Imported ProtectionStones vertical bounds are normalized to the actual world height.
+
+### Notes
+- Always back up your server before migration.
+- Always run dry-run before real import.
+- ProtectionStones regions are not deleted automatically.
+- Missing custom radii should be added to `stones.yml` or generated with `suggest-stones`.
+
 ## LederProtections v1.0.0
 
 First stable release of LederProtections for Minecraft 1.21.x servers.
