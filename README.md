@@ -1,3 +1,5 @@
+Outdated Wiki, 1.2.0
+
 # LederProtections
 
 **LederProtections** is a modern protection-stone plugin for Minecraft servers.
