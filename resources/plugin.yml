@@ -1,0 +1,164 @@
+name: LederProtections
+version: '${version}'
+main: com.alexisleder.lederprotections.LederProtections
+api-version: '1.21'
+author: AlexisLeder
+website: https://github.com/Alexisleder/LederProtections-Docs/wiki
+description: Protection stone system for Minecraft 1.21.x and 26.x with WorldGuard backend, GUI management, Vault economy support, audit logs, safe backups, and a custom role-based rule engine. Supports Spigot and compatible Paper-based forks. Paper is recommended when a stable build is available.
+
+depend:
+  - WorldGuard
+  - WorldEdit
+
+softdepend:
+  - Vault
+  - LuckPerms
+  - PlaceholderAPI
+  - CoreProtect
+  - dynmap
+  - BlueMap
+  - ItemsAdder
+  - Oraxen
+  - MythicMobs
+  - Citizens
+
+commands:
+  lederprotections:
+    description: Opens and manages LederProtections.
+    usage: /<command> [subcommand]
+    aliases:
+      - lep
+      - protection
+      - protections
+      - protecciones
+      - p
+  warps:
+    description: Opens the public protection directory.
+    usage: /<command>
+    aliases:
+      - pwarps
+      - protectionwarps
+
+permissions:
+  lederprotections.admin:
+    description: Allows access to administrative LederProtections commands.
+    default: op
+    children:
+      lederprotections.use: true
+      lederprotections.shop: true
+      lederprotections.info: true
+      lederprotections.update: true
+      lederprotections.admin.protections: true
+      lederprotections.admin.migrate: true
+      lederprotections.admin.export: true
+      lederprotections.admin.import: true
+      lederprotections.border: true
+      lederprotections.sethome: true
+      lederprotections.upgrade: true
+      lederprotections.warps: true
+      lederprotections.bypass.rules: true
+      lederprotections.stone.4: true
+      lederprotections.stone.8: true
+      lederprotections.stone.16: true
+      lederprotections.stone.32: true
+      lederprotections.stone.64: true
+
+  lederprotections.use:
+    description: Allows access to basic LederProtections features.
+    default: true
+
+  lederprotections.warps:
+    description: Allows opening and visiting the public protection directory.
+    default: true
+
+  lederprotections.shop:
+    description: Allows opening and using the protection stone shop.
+    default: true
+
+  lederprotections.info:
+    description: Allows viewing LederProtections runtime compatibility and support information.
+    default: op
+
+  lederprotections.update:
+    description: Allows receiving LederProtections update notifications.
+    default: op
+
+  lederprotections.admin.protections:
+    description: Allows opening the admin GUI that lists every protection on the server.
+    default: op
+
+  lederprotections.admin.migrate:
+    description: Allows using safe migration tooling such as the ProtectionStones importer.
+    default: op
+
+  lederprotections.admin.export:
+    description: Allows exporting LederProtections protection backups.
+    default: op
+
+  lederprotections.admin.import:
+    description: Allows importing LederProtections protection backups.
+    default: op
+
+  lederprotections.border:
+    description: Allows showing visual protection borders.
+    default: true
+
+  lederprotections.sethome:
+    description: Allows setting the teleport point of owned or allowed protections.
+    default: true
+
+  lederprotections.upgrade:
+    description: Allows upgrading owned protections.
+    default: true
+
+  lederprotections.limit.1:
+    description: Allows owning up to 1 protection when limits are enabled.
+    default: false
+
+  lederprotections.limit.3:
+    description: Allows owning up to 3 protections when limits are enabled.
+    default: false
+
+  lederprotections.limit.5:
+    description: Allows owning up to 5 protections when limits are enabled.
+    default: false
+
+  lederprotections.limit.10:
+    description: Allows owning up to 10 protections when limits are enabled.
+    default: false
+
+  lederprotections.limit.unlimited:
+    description: Allows unlimited protections when limits are enabled.
+    default: false
+
+  lederprotections.limit.x8.3:
+    description: Example per-type limit permission for up to 3 x8 protections.
+    default: false
+
+  lederprotections.limit.x16.2:
+    description: Example per-type limit permission for up to 2 x16 protections.
+    default: false
+
+  lederprotections.bypass.rules:
+    description: Allows bypassing the custom protection rule engine.
+    default: op
+
+  lederprotections.stone.4:
+    description: Allows using the x4 protection stone.
+    default: true
+
+  lederprotections.stone.8:
+    description: Allows using the x8 protection stone.
+    default: true
+
+  lederprotections.stone.16:
+    description: Allows using the x16 protection stone.
+    default: true
+
+  lederprotections.stone.32:
+    description: Allows using the x32 protection stone.
+    default: op
+
+  lederprotections.stone.64:
+    description: Allows using the x64 protection stone.
+    default: op

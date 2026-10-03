@@ -1,0 +1,1043 @@
+# ============================================================
+# LederProtections - Configuración principal / Main configuration
+# ============================================================
+#
+# ES:
+# LederProtections usa WorldGuard como backend de regiones, pero mantiene
+# su propio motor de reglas para controlar permisos finos por rol:
+#
+# - Dueño
+# - Codueño
+# - Miembro
+# - Visitante
+# - Bloqueado
+#
+# EN:
+# LederProtections uses WorldGuard as its region backend, but keeps
+# its own rule engine for fine-grained permissions by role:
+#
+# - Owner
+# - Co-owner
+# - Member
+# - Visitor
+# - Blocked
+#
+# ES: Las piedras de protección se configuran en stones.yml.
+# EN: Protection stones are configured in stones.yml.
+#
+# ES: Mantén debug en false en producción.
+# EN: Keep debug disabled in production.
+# ============================================================
+
+# ES: Idioma usado por el plugin.
+# EN: Language used by the plugin.
+#
+# Opciones / Options:
+# - es
+# - en
+language: "es"
+
+# ES: Activa logs extra para depuración.
+# EN: Enables extra debug logs.
+#
+# ES: Recomendado en producción: false.
+# EN: Recommended in production: false.
+debug: false
+
+settings:
+  # ES:
+  # Si está en true, las protecciones cubrirán desde la altura mínima
+  # hasta la altura máxima del mundo.
+  #
+  # EN:
+  # If enabled, protections will cover from the world's minimum height
+  # to the world's maximum height.
+  #
+  # Recomendado / Recommended: true
+  protect-full-height: true
+
+worlds:
+  # ES:
+  # Mundos donde se permite colocar piedras de protección.
+  #
+  # Si la lista está vacía:
+  # allowed: []
+  #
+  # se permitirá colocar protecciones en todos los mundos.
+  #
+  # EN:
+  # Worlds where players are allowed to place protection stones.
+  #
+  # If the list is empty:
+  # allowed: []
+  #
+  # protections can be placed in every world.
+  allowed:
+    - world
+    - world_nether
+    - world_the_end
+
+
+# ============================================================
+# Almacenamiento seguro / Safe storage
+# ============================================================
+#
+# ES:
+# Controla cómo se guarda protections.yml. Este archivo es crítico porque
+# contiene las protecciones, dueños, miembros, bloqueados, reglas y bounds.
+#
+# EN:
+# Controls how protections.yml is saved. This file is critical because it
+# stores protections, owners, members, blocked players, rules and bounds.
+# ============================================================
+
+storage:
+  protections:
+    # ES: Guarda usando archivo temporal + reemplazo seguro.
+    # EN: Saves using a temporary file + safe replacement.
+    safe-save: true
+
+    # ES: Crea respaldos automáticos antes de reemplazar protections.yml.
+    # EN: Creates automatic backups before replacing protections.yml.
+    backups-enabled: true
+
+    # ES: Número máximo de respaldos a conservar.
+    # EN: Maximum number of backups to keep.
+    max-backups: 10
+
+    # ES: Si protections.yml está corrupto, intenta restaurar el respaldo más reciente.
+    # EN: If protections.yml is corrupted, attempts to restore the latest backup.
+    restore-latest-backup-on-load-failure: true
+
+
+# ============================================================
+# Auditoría / Audit
+# ============================================================
+#
+# ES:
+# Registra operaciones críticas para administración y diagnóstico:
+# creación de protecciones, compras, upgrades, teletransporte y
+# restauración automática de backups.
+#
+# EN:
+# Logs critical operations for administration and diagnostics:
+# protection creation, purchases, upgrades, teleportation and
+# automatic backup restoration.
+# ============================================================
+
+audit:
+  # ES: Activa o desactiva la auditoría.
+  # EN: Enables or disables audit logging.
+  enabled: true
+
+  # ES: Si está en true, también muestra auditoría en consola.
+  # EN: If true, audit entries are also printed to console.
+  console: false
+
+  # ES: Longitud máxima de cada valor registrado.
+  # EN: Maximum length for each logged value.
+  max-value-length: 160
+
+  file:
+    # ES: Guarda auditoría en plugins/LederProtections/logs/.
+    # EN: Saves audit logs in plugins/LederProtections/logs/.
+    enabled: true
+
+    # ES: Crea un archivo nuevo por cada arranque del plugin.
+    # EN: Creates a new file for every plugin startup.
+    new-file-each-start: true
+
+    # ES: Elimina automáticamente logs antiguos de auditoría para evitar acumulación ilimitada.
+    # EN: Automatically removes old audit logs to avoid unlimited accumulation.
+    cleanup-old-files: true
+
+    # ES: Cantidad máxima de archivos de auditoría que se conservarán.
+    # EN: Maximum amount of audit log files to keep.
+    max-files: 30
+
+    # ES: Tiempo máximo para esperar escrituras pendientes al apagar el plugin.
+    # EN: Maximum time to wait for pending audit writes when the plugin disables.
+    shutdown-flush-timeout-ms: 2000
+
+    # ES: No uses rutas ni separadores; solo nombre base del archivo.
+    #     Si new-file-each-start está activo, se agregará la fecha automáticamente.
+    # EN: Do not use paths or separators; base file name only.
+    #     If new-file-each-start is enabled, the date is appended automatically.
+    name: "audit.log"
+
+
+# ============================================================
+# Comandos / Commands
+# ============================================================
+#
+# ES:
+# Controla detalles de comandos y autocompletado.
+#
+# EN:
+# Controls command and tab-completion behavior.
+# ============================================================
+
+commands:
+  # ES:
+  # Si está en true, los jugadores solo verán en tab-complete los
+  # subcomandos que pueden usar por permiso global.
+  #
+  # EN:
+  # If enabled, players only see in tab-complete the subcommands
+  # they can use according to global permissions.
+  hide-unauthorized-tab-completions: true
+
+
+
+
+
+
+
+
+# ============================================================
+# Update checker / Revisor de actualizaciones
+# ============================================================
+#
+# ES:
+# Revisa de forma asíncrona si existe una versión nueva del plugin.
+# La fuente oficial viene integrada dentro del plugin y apunta a Modrinth.
+# No descarga ni instala nada automáticamente; solo avisa.
+#
+# EN:
+# Asynchronously checks whether a new plugin version exists.
+# The official source is built into the plugin and points to Modrinth.
+# It never downloads or installs anything automatically; it only notifies.
+# ============================================================
+
+update-checker:
+  # ES: Activa o desactiva el checker de actualizaciones.
+  # EN: Enables or disables the update checker.
+  enabled: true
+
+  # ES: Revisa al iniciar el servidor y avisa en consola si hay actualización.
+  # EN: Checks when the server starts and logs if an update is available.
+  check-on-startup: true
+
+  # ES: Avisa a admins al entrar si hay actualización disponible.
+  # EN: Notifies admins on join if an update is available.
+  notify-admins-on-join: true
+
+
+
+# ============================================================
+# Action bar / Barra de acción
+# ============================================================
+#
+# ES:
+# Muestra avisos encima de la hotbar cuando un jugador entra o sale
+# de una protección. Usa mensajes traducibles para evitar ruido en chat.
+#
+# EN:
+# Shows notices above the hotbar when a player enters or leaves
+# a protection. Uses translated messages to avoid chat noise.
+# ============================================================
+
+actionbar:
+  protection-entry-exit:
+    # ES: Activa los avisos al entrar o salir de protecciones.
+    # EN: Enables notices when entering or leaving protections.
+    enabled: true
+
+    # ES: Cooldown entre mensajes para evitar parpadeo al cruzar bordes.
+    # EN: Cooldown between messages to avoid flickering near borders.
+    cooldown-ms: 750
+
+# ============================================================
+# Compatibilidad opcional / Optional compatibility
+# ============================================================
+#
+# ES:
+# Estos hooks no son dependencias obligatorias. Sirven como base para
+# integraciones futuras con plugins populares del ecosistema Bukkit/Spigot/Paper.
+# Si un plugin no está instalado, LederProtections seguirá funcionando.
+#
+# EN:
+# These hooks are not required dependencies. They are a foundation for
+# future integrations with popular Bukkit/Spigot/Paper ecosystem plugins.
+# If a plugin is not installed, LederProtections will continue working.
+# ============================================================
+
+compatibility:
+  # ES: Muestra en consola qué plugins opcionales fueron detectados al iniciar.
+  #     Puedes consultar el estado manualmente con /lep hooks.
+  # EN: Logs detected optional plugins during startup.
+  #     You can manually check hook status with /lep hooks.
+  log-detected-hooks: false
+
+  hooks:
+    vault:
+      enabled: true
+    luckperms:
+      enabled: true
+    placeholderapi:
+      enabled: true
+      # ES: Registra placeholders propios de LederProtections en PlaceholderAPI.
+      # EN: Registers LederProtections placeholders in PlaceholderAPI.
+      register-expansion: true
+      # ES: Caché breve para scoreboards y TAB que solicitan placeholders de forma asíncrona.
+      # EN: Short cache for scoreboards and tab lists that request placeholders asynchronously.
+      cache-duration-ms: 1000
+      # ES: Espera máxima de una consulta asíncrona al hilo principal. Al agotarse,
+      #     se devuelve el último valor reciente o se deja el placeholder sin resolver.
+      # EN: Maximum wait for an asynchronous query to reach the main thread. On timeout,
+      #     the latest recent value is returned or the placeholder remains unresolved.
+      async-timeout-ms: 100
+    coreprotect:
+      enabled: true
+    dynmap:
+      enabled: true
+    bluemap:
+      enabled: true
+    itemsadder:
+      enabled: true
+    oraxen:
+      enabled: true
+    mythicmobs:
+      enabled: true
+    citizens:
+      enabled: true
+
+# ============================================================
+# Límites de protecciones / Protection limits
+# ============================================================
+#
+# ES:
+# Controla cuántas protecciones puede tener cada jugador.
+#
+# - El límite global cuenta todas las protecciones del jugador.
+# - El límite por tipo usa por defecto max-protections de stones.yml.
+# - Los overrides por permiso permiten rangos especiales sin tocar stones.yml.
+# - También puedes usar permisos directos como lederprotections.limit.5 o
+#   lederprotections.limit.unlimited sin declararlos en esta sección.
+# - Para límites por tipo puedes usar permisos como
+#   lederprotections.limit.x8.3 o lederprotections.limit.type.8.3.
+# - Usa -1 para ilimitado.
+#
+# EN:
+# Controls how many protections each player can own.
+#
+# - The global limit counts all protections owned by the player.
+# - The per-type limit uses max-protections from stones.yml by default.
+# - Permission overrides allow special ranks without editing stones.yml.
+# - You can also use direct permissions such as lederprotections.limit.5 or
+#   lederprotections.limit.unlimited without declaring them in this section.
+# - For per-type limits you can use permissions such as
+#   lederprotections.limit.x8.3 or lederprotections.limit.type.8.3.
+# - Use -1 for unlimited.
+# ============================================================
+
+limits:
+  # ES: Activa o desactiva el sistema de límites.
+  # EN: Enables or disables the protection limit system.
+  enabled: true
+
+  # ES: Si está en true, jugadores con lederprotections.admin ignoran límites.
+  # EN: If enabled, players with lederprotections.admin bypass limits.
+  admin-bypass: true
+
+  global:
+    # ES: Máximo total de protecciones por jugador. -1 = ilimitado.
+    # EN: Maximum total protections per player. -1 = unlimited.
+    max-protections: -1
+
+    # ES:
+    # Overrides globales por permiso. Gana el límite más alto.
+    # Si algún permiso otorga -1, el jugador queda ilimitado globalmente.
+    #
+    # EN:
+    # Global permission overrides. The highest limit wins.
+    # If any permission grants -1, the player has unlimited global protections.
+    permission-overrides:
+      # También puedes usar permisos directos sin agregarlos aquí:
+      # - lederprotections.limit.3
+      # - lederprotections.limit.5
+      # - lederprotections.limit.10
+      # - lederprotections.limit.unlimited
+      #
+      # You can also use direct permissions without adding them here:
+      # - lederprotections.limit.3
+      # - lederprotections.limit.5
+      # - lederprotections.limit.10
+      # - lederprotections.limit.unlimited
+      #
+      # Overrides configurables / Configurable overrides:
+      # "lederprotections.limit.global.vip": 25
+      # "lederprotections.limit.global.elite": 50
+      # "lederprotections.limit.global.unlimited": -1
+
+  per-type:
+    # ES: Usa max-protections de cada piedra en stones.yml como límite base.
+    # EN: Uses each stone's max-protections value from stones.yml as the base limit.
+    use-stones-max-protections: true
+
+    # ES: Solo se usa si use-stones-max-protections es false. -1 = ilimitado.
+    # EN: Only used if use-stones-max-protections is false. -1 = unlimited.
+    default-max-protections: -1
+
+    # ES:
+    # Overrides por tipo y permiso.
+    # El ID debe coincidir con una piedra de stones.yml, por ejemplo "4", "8", "16".
+    #
+    # EN:
+    # Per-type permission overrides.
+    # The ID must match a stone from stones.yml, for example "4", "8", "16".
+    permission-overrides:
+      "4":
+        # Permisos directos equivalentes / Equivalent direct permissions:
+        # - lederprotections.limit.x4.10
+        # - lederprotections.limit.type.4.10
+        # - lederprotections.limit.x4.unlimited
+        # "lederprotections.limit.type.4.vip": 10
+        # "lederprotections.limit.type.4.unlimited": -1
+      "8":
+        # Direct examples: lederprotections.limit.x8.8 / lederprotections.limit.type.8.8
+        # "lederprotections.limit.type.8.vip": 8
+      "16":
+        # Direct examples: lederprotections.limit.x16.6 / lederprotections.limit.type.16.6
+        # "lederprotections.limit.type.16.vip": 6
+      "32":
+        # Direct examples: lederprotections.limit.x32.4 / lederprotections.limit.type.32.4
+        # "lederprotections.limit.type.32.vip": 4
+      "64":
+        # Direct examples: lederprotections.limit.x64.2 / lederprotections.limit.type.64.2
+        # "lederprotections.limit.type.64.vip": 2
+
+# ============================================================
+# Políticas ambientales / Environment policies
+# ============================================================
+#
+# ES:
+# Define el comportamiento ambiental predeterminado dentro de las
+# protecciones. Cada protección puede heredar estos valores o guardar un
+# override propio desde la GUI Entorno.
+#
+# ALLOW solo habilita efectos dentro de la misma protección. El fuego y las
+# explosiones nunca pueden cruzar entre el exterior y una protección ni entre
+# dos protecciones distintas.
+#
+# EN:
+# Defines the default environmental behavior inside protections. Each
+# protection can inherit these values or store its own override from the
+# Environment GUI.
+#
+# ALLOW only enables effects inside the same protection. Fire and explosions
+# can never cross between the outside and a protection or between two different
+# protections.
+# ============================================================
+
+environment:
+  # ES: Activa las decisiones internas de flags. Las barreras siguen activas si se deshabilita.
+  # EN: Enables internal flag decisions. Boundary protection remains active if disabled.
+  enabled: true
+
+  defaults:
+    hostile-spawning: "deny"
+    tnt-explosions: "deny"
+    creeper-explosions: "deny"
+    other-explosions: "deny"
+    fire-spread: "deny"
+
+# ============================================================
+# WorldGuard
+# ============================================================
+#
+# ES:
+# WorldGuard se usa como backend de regiones.
+#
+# No configures aquí flags finas como:
+# - build
+# - block-break
+# - block-place
+# - chest-access
+# - use
+# - interact
+# - item-drop
+# - item-pickup
+# - damage-animals
+# - pvp
+# - enderpearl
+#
+# Esas acciones las controla LederProtections desde rules.
+#
+# EN:
+# WorldGuard is used as the region backend.
+#
+# Do not configure fine-grained flags here, such as:
+# - build
+# - block-break
+# - block-place
+# - chest-access
+# - use
+# - interact
+# - item-drop
+# - item-pickup
+# - damage-animals
+# - pvp
+# - enderpearl
+#
+# Those actions are handled by LederProtections through the rules section.
+# ============================================================
+
+worldguard:
+  # ES:
+  # Si está en true, las regiones creadas por LederProtections usarán
+  # passthrough: allow.
+  #
+  # Esto evita que WorldGuard bloquee de forma genérica a visitantes.
+  # LederProtections se encarga del bloqueo real con su motor propio.
+  #
+  # EN:
+  # If enabled, regions created by LederProtections will use
+  # passthrough: allow.
+  #
+  # This prevents WorldGuard from generically blocking visitors.
+  # LederProtections handles the actual restrictions with its own rule engine.
+  #
+  # Recomendado / Recommended: true
+  passthrough: true
+
+  # ES:
+  # Aplica flags generales seguras al crear regiones.
+  #
+  # EN:
+  # Applies safe general-purpose WorldGuard flags when creating regions.
+  #
+  # Recomendado / Recommended: true
+  apply-default-flags: true
+
+  # ES:
+  # Flags generales de seguridad no administradas por las políticas ambientales.
+  #
+  # No incluyas pvp, build, use, chest-access ni similares aquí.
+  #
+  # EN:
+  # General safety flags not managed by the environment policies.
+  #
+  # Do not include pvp, build, use, chest-access, or similar flags here.
+  default-flags: {}
+
+# ============================================================
+# Teletransporte / Teleport
+# ============================================================
+#
+# ES:
+# Controla el teletransporte desde la GUI de protecciones.
+#
+# El dinero se cobra justo antes de ejecutar el TP, no al iniciar
+# el warmup. Si el teletransporte falla después de cobrar, el plugin
+# intenta reembolsar automáticamente.
+#
+# EN:
+# Controls teleporting from the protection GUI.
+#
+# Money is charged right before the teleport is executed, not when
+# the warmup starts. If the teleport fails after charging, the plugin
+# attempts to refund the player automatically.
+# ============================================================
+
+teleport:
+  # ES: Activa o desactiva el botón de teletransporte desde la GUI.
+  # EN: Enables or disables the teleport button in the protection GUI.
+  enabled: true
+
+  # ES:
+  # Tiempo en segundos que el jugador debe esperar antes de teletransportarse.
+  # Usa 0 para teletransportar instantáneamente.
+  #
+  # EN:
+  # Time in seconds the player must wait before teleporting.
+  # Use 0 for instant teleport.
+  warmup-seconds: 3
+
+  # ES:
+  # Cooldown después de teletransportarse correctamente.
+  # Usa 0 para desactivarlo.
+  #
+  # EN:
+  # Cooldown after a successful teleport.
+  # Use 0 to disable it.
+  cooldown-seconds: 0
+
+  # ES: Cancela el warmup si el jugador cambia de bloque.
+  # EN: Cancels the warmup if the player changes block position.
+  cancel-on-move: true
+
+  # ES: Cancela el warmup si el jugador recibe daño.
+  # EN: Cancels the warmup if the player takes damage.
+  cancel-on-damage: true
+
+  # ES: Cancela el warmup si el jugador cambia de mundo.
+  # EN: Cancels the warmup if the player changes world.
+  cancel-on-world-change: true
+
+  # ES: Cancela el warmup si otro plugin o mecánica teletransporta al jugador.
+  # EN: Cancels the warmup if another plugin or mechanic teleports the player.
+  cancel-on-external-teleport: true
+
+  # ES: Cancela el warmup si el jugador cambia de modo de juego.
+  # EN: Cancels the warmup if the player changes game mode.
+  cancel-on-gamemode-change: true
+
+  # ES:
+  # Configuración del comando /p sethome.
+  # Permite definir el punto exacto usado por el botón de teletransporte.
+  #
+  # EN:
+  # /p sethome configuration.
+  # Allows defining the exact point used by the teleport button.
+  sethome:
+    # ES: Activa o desactiva /p sethome.
+    # EN: Enables or disables /p sethome.
+    enabled: true
+
+    # ES: Permite que codueños definan el punto de teletransporte.
+    # EN: Allows co-owners to set the teleport point.
+    allow-coowners: true
+
+  # ES: Radio horizontal máximo para buscar una ubicación segura cerca de la piedra.
+  # EN: Maximum horizontal radius used to search for a safe location near the stone.
+  safe-search-radius: 3
+
+  # ES: Rango vertical máximo para buscar una ubicación segura.
+  # EN: Maximum vertical range used to search for a safe location.
+  safe-search-vertical-range: 3
+
+  # ES:
+  # Costo del teletransporte usando Vault.
+  # Usa 0.0 para que sea gratis.
+  #
+  # EN:
+  # Teleport cost using Vault.
+  # Use 0.0 to make it free.
+  cost: 0.0
+
+  # ES:
+  # Si está en true, jugadores con lederprotections.admin no pagan,
+  # no tienen cooldown y no tienen warmup.
+  #
+  # EN:
+  # If enabled, players with lederprotections.admin do not pay,
+  # do not have cooldown, and do not have warmup.
+  admin-bypass: true
+
+# ============================================================
+# Tienda de protecciones / Shop
+# ============================================================
+
+shop:
+  # ES: Activa o desactiva la tienda de piedras.
+  # EN: Enables or disables the protection stone shop.
+  enabled: true
+
+  # ES: Permite comprar piedras desde la GUI.
+  # EN: Allows buying stones from the GUI.
+  buy-enabled: true
+
+  # ES: Permite abrir la tienda por comando.
+  # EN: Allows opening the shop from command.
+  command-enabled: true
+
+  # ES: Si está en true, jugadores con lederprotections.admin no pagan.
+  # EN: If enabled, players with lederprotections.admin do not pay.
+  admin-bypass-cost: false
+
+upgrades:
+  # ES: Activa o desactiva el sistema de mejoras.
+  # EN: Enables or disables protection upgrades.
+  enabled: true
+
+  # ES: Permiso necesario para mejorar protecciones.
+  # EN: Permission required to upgrade protections.
+  permission: "lederprotections.upgrade"
+
+  # ES: Si está en true, el costo será precio_siguiente - precio_actual.
+  # EN: If enabled, the cost will be next_price - current_price.
+  use-price-difference: true
+
+  # ES: Si está en true, jugadores con lederprotections.admin no pagan.
+  # EN: If enabled, players with lederprotections.admin do not pay.
+  admin-bypass-cost: false
+
+  # ES: Cambia físicamente el bloque de la piedra al mejorar.
+  # EN: Physically changes the protection stone block when upgraded.
+  change-physical-stone: true
+
+# ============================================================
+# Bordes visuales / Visual borders
+# ============================================================
+#
+# ES:
+# Permite mostrar el borde de una protección con partículas usando:
+# /p border
+#
+# Las partículas solo las ve el jugador que ejecuta el comando.
+#
+# EN:
+# Allows showing a protection border using particles with:
+# /p border
+#
+# Particles are only visible to the player who runs the command.
+# ============================================================
+
+border:
+  # ES: Activa o desactiva el sistema de bordes visuales.
+  # EN: Enables or disables visual protection borders.
+  enabled: true
+
+  # ES: Duración del borde en segundos.
+  # EN: Border duration in seconds.
+  duration-seconds: 12
+
+  # ES: Cooldown por jugador en segundos.
+  # EN: Per-player cooldown in seconds.
+  cooldown-seconds: 5
+
+  # ES: Cada cuántos ticks se redibuja el borde.
+  # EN: How often the border is redrawn, in ticks.
+  interval-ticks: 10
+
+  # ES: Separación entre partículas, en bloques.
+  # EN: Spacing between particles, in blocks.
+  spacing: 1
+
+  # ES: Altura extra visual sobre el bloque.
+  # EN: Extra visual height above the block.
+  y-offset: 0.15
+
+  # ES: Máximo de partículas por render para evitar lag.
+  # EN: Maximum particles per render to avoid lag.
+  max-particles-per-render: 800
+
+  # ES:
+  # Partícula usada para el borde.
+  # Algunas opciones: HAPPY_VILLAGER, END_ROD, FLAME, WAX_ON, ELECTRIC_SPARK.
+  #
+  # EN:
+  # Particle used for the border.
+  # Some options: HAPPY_VILLAGER, END_ROD, FLAME, WAX_ON, ELECTRIC_SPARK.
+  particle: "HAPPY_VILLAGER"
+
+# ============================================================
+# Motor propio de reglas / Custom rule engine
+# ============================================================
+#
+# ES:
+# Estados disponibles:
+# - allow
+# - deny
+# - default
+#
+# Si una protección tiene reglas personalizadas en la GUI, esas reglas
+# tienen prioridad sobre esta configuración global.
+#
+# EN:
+# Available states:
+# - allow
+# - deny
+# - default
+#
+# If a protection has custom rules configured from the GUI, those rules
+# have priority over this global configuration.
+# ============================================================
+
+rules:
+  enabled: true
+
+  pvp:
+    # ES:
+    # Si está en true, cuando el PvP de visitantes está denegado:
+    # - visitantes no pueden golpear
+    # - visitantes no pueden ser golpeados
+    #
+    # EN:
+    # If enabled, when visitor PvP is denied:
+    # - visitors cannot attack
+    # - visitors cannot be attacked
+    #
+    # Recomendado / Recommended: true
+    protect-visitors: true
+
+    # ES:
+    # Mundos donde LederProtections no controlará PvP.
+    # Útil para arenas, eventos o mundos de minijuegos.
+    #
+    # EN:
+    # Worlds where LederProtections will not control PvP.
+    # Useful for arenas, events, or minigame worlds.
+    ignored-worlds: []
+
+  # ES:
+  # Permiso para ignorar el motor propio de reglas.
+  # Recomendado solo para administradores reales.
+  #
+  # EN:
+  # Permission used to bypass the custom rule engine.
+  # Recommended only for real administrators.
+  admin-bypass-permission: "lederprotections.bypass.rules"
+
+  profiles:
+    admin:
+      default: "allow"
+      actions: {}
+
+    owner:
+      default: "allow"
+      actions: {}
+
+    co-owner:
+      # ES:
+      # Los codueños pueden hacer casi todo por defecto.
+      # El PvP queda desactivado por seguridad.
+      #
+      # EN:
+      # Co-owners can do almost everything by default.
+      # PvP is disabled for safety.
+      default: "allow"
+      actions:
+        pvp: "deny"
+
+    member:
+      # ES:
+      # Los miembros pueden construir e interactuar por defecto.
+      # El PvP queda desactivado por seguridad.
+      #
+      # EN:
+      # Members can build and interact by default.
+      # PvP is disabled for safety.
+      default: "allow"
+      actions:
+        pvp: "deny"
+
+    visitor:
+      # ES:
+      # Los visitantes quedan bloqueados por defecto.
+      # Solo se permite lo que esté explícitamente en allow.
+      #
+      # EN:
+      # Visitors are denied by default.
+      # Only explicitly allowed actions will be permitted.
+      default: "deny"
+      actions:
+        block-break: "deny"
+        block-place: "deny"
+
+        chest-open: "deny"
+        barrel-open: "deny"
+        shulker-open: "deny"
+
+        # ES: Dispensadores, soltadores, tolvas, hornos y otros contenedores.
+        # EN: Dispensers, droppers, hoppers, furnaces, and other containers.
+        container-open: "deny"
+
+        door-use: "allow"
+        trapdoor-use: "allow"
+        fence-gate-use: "allow"
+        button-use: "allow"
+        lever-use: "allow"
+
+        # ES: Clave compatible para placas, tripwire y redstone ore.
+        # EN: Backward-compatible key for plates, tripwire and redstone ore.
+        pressure-plate-use: "deny"
+
+        item-drop: "deny"
+        item-pickup: "deny"
+
+        entity-interact: "deny"
+        animal-damage: "deny"
+        entity-damage: "deny"
+        pvp: "deny"
+        ender-pearl: "deny"
+
+    blocked:
+      # ES:
+      # Jugadores bloqueados de una protección.
+      #
+      # Por seguridad, este perfil debe negar todo por defecto.
+      # Si un jugador está bloqueado y también aparece como miembro por error,
+      # el rol BLOCKED tiene prioridad sobre MEMBER.
+      #
+      # EN:
+      # Blocked players in a protection.
+      #
+      # For safety, this profile should deny everything by default.
+      # If a player is blocked and also appears as a member by mistake,
+      # the BLOCKED role has priority over MEMBER.
+      default: "deny"
+      actions:
+        block-break: "deny"
+        block-place: "deny"
+
+        chest-open: "deny"
+        barrel-open: "deny"
+        shulker-open: "deny"
+
+        # ES: Dispensadores, soltadores, tolvas, hornos y otros contenedores.
+        # EN: Dispensers, droppers, hoppers, furnaces, and other containers.
+        container-open: "deny"
+
+        door-use: "deny"
+        trapdoor-use: "deny"
+        fence-gate-use: "deny"
+        button-use: "deny"
+        lever-use: "deny"
+        pressure-plate-use: "deny"
+
+        item-drop: "deny"
+        item-pickup: "deny"
+
+        entity-interact: "deny"
+        animal-damage: "deny"
+        entity-damage: "deny"
+        pvp: "deny"
+        ender-pearl: "deny"
+
+# ============================================================
+# Flags legacy de WorldGuard / Legacy WorldGuard flags
+# ============================================================
+#
+# ES:
+# Este sistema queda vacío porque las reglas finas ahora se manejan
+# con el motor propio de LederProtections.
+#
+# Se conserva la sección para compatibilidad interna con clases GUI antiguas.
+#
+# EN:
+# This system is left empty because fine-grained permissions are now
+# handled by the custom LederProtections rule engine.
+#
+# The section is kept for internal compatibility with older GUI classes.
+# ============================================================
+
+flags:
+  profiles: {}
+
+# ============================================================
+# Public protections and warp directory
+# ============================================================
+public-protections:
+  enabled: true
+  default-visibility: "private"
+  default-category: "other"
+  allow-coowner-editing: false
+  input-timeout-seconds: 60
+  limits:
+    max-title-length: 32
+    max-description-length: 120
+    max-welcome-message-length: 100
+    max-public-protections-per-player: 3
+  text:
+    allow-colors: false
+    allow-formatting: false
+    blocked-words: []
+  icons:
+    default: "GRASS_BLOCK"
+    available:
+      - "GRASS_BLOCK"
+      - "SPAWNER"
+      - "WHEAT"
+      - "COOKED_PORKCHOP"
+      - "OAK_SAPLING"
+      - "REDSTONE"
+      - "EMERALD"
+      - "CHEST"
+      - "STONE_BRICKS"
+      - "DIAMOND_PICKAXE"
+  teleport:
+    delay-seconds: 3
+    cooldown-seconds: 10
+    cancel-on-move: true
+    cancel-on-damage: true
+    allow-cross-world: true
+  directory:
+    page-size: 28
+    search-enabled: true
+    favorites-enabled: true
+    categories-enabled: true
+    visit-counter-enabled: true
+    default-order: "featured"
+  visit-counter:
+    per-player-cooldown-seconds: 300
+  welcome-message:
+    cooldown-seconds: 30
+  storage:
+    visit-save-interval-seconds: 60
+  categories:
+    builds:
+      enabled: true
+      material: "BRICKS"
+      # Optional 64-character textures.minecraft.net hash; blank uses material above.
+      head-texture: "3daa5ac9fa2ed39eb2b5c8705abbfe4ba9dfd136ef8c47054ac95b928ec25f26"
+      name: "Construcciones"
+      description: "Casas, ciudades y proyectos de construcción."
+    shops:
+      enabled: true
+      material: "EMERALD"
+      head-texture: "34ccb52750e97e830aebfa8a21d5da0d364d0fdad9fb0cc220fe2ca8411842c3"
+      name: "Tiendas"
+      description: "Comercios y mercados públicos."
+    farms:
+      enabled: true
+      material: "WHEAT"
+      head-texture: "78b53a7eab1f8856837440a5ed89328f2583b39aaff96e6f10b88a3fa04d5696"
+      name: "Granjas"
+      description: "Granjas y zonas productivas."
+    roleplay:
+      enabled: true
+      material: "BOOK"
+      head-texture: "fd4d2383113537b49e33e9b618ed820b845f02306888f9d01a13502637e8b241"
+      name: "Roleplay"
+      description: "Lugares creados para interpretar y convivir."
+    events:
+      enabled: true
+      material: "FIREWORK_ROCKET"
+      head-texture: "83d49dde75e12b60ebe6e8981ea4fb266b20752c2f55e96af113c287eed63e81"
+      name: "Eventos"
+      description: "Zonas de eventos y actividades comunitarias."
+    other:
+      enabled: true
+      material: "COMPASS"
+      head-texture: "ee7700096b5a2a87386d6205b4ddcc14fd33cf269362fa6893499431ce77bf9"
+      name: "Otros"
+      description: "Protecciones sin una categoría específica."
+
+# Bukkit TextDisplay holograms. No NMS or external dependency is used.
+#
+# ES: enabled es el interruptor global. default-enabled solo controla las
+# protecciones cuyo estado individual permanece en DEFAULT. Usa /lep reload.
+# EN: enabled is the global switch. default-enabled only controls protections
+# whose individual state remains DEFAULT. Apply changes with /lep reload.
+holograms:
+  enabled: true
+  default-enabled: true
+  height: 1.8
+  # Distancia aproximada en bloques; internamente se convierte al rango de TextDisplay.
+  view-distance: 32
+  line-width: 240
+  # ES: Variables propias disponibles:
+  #     {title}/{name}: nombre de la protección; {owner}: dueño;
+  #     {user}: nombre del jugador que está viendo el holograma (por jugador);
+  #     {id}: ID persistente; {type}/{type_id}: tipo de piedra;
+  #     {world}: mundo; {x}/{y}/{z} y {stone_x}/{stone_y}/{stone_z}: coordenadas de la piedra;
+  #     {size_x}/{size_y}/{size_z}: dimensiones; {description}: descripción pública;
+  #     {visibility}: visibilidad traducida; {category}: categoría; {visits}: visitas.
+  # EN: Built-in variables: {title}/{name} protection name; {owner} protection owner;
+  #     {user} name of the player viewing the hologram (per-viewer display);
+  #     {id} persistent ID; {type}/{type_id} stone type; {world}; {x}/{y}/{z} or
+  #     {stone_x}/{stone_y}/{stone_z} stone coordinates; {size_x}/{size_y}/{size_z}
+  #     dimensions; {description}; {visibility}; {category}; {visits}.
+  # ES/EN: PlaceholderAPI is optional. Use %expansion_placeholder% syntax,
+  # including %player_name% and %lederprotections_*% when their expansions exist.
+  # If an old custom line used {user} to mean the protection owner, replace it with {owner}.
+  # PlaceholderAPI tokens use the current viewer as context and also enable
+  # private nearby displays. Values refresh on block movement/reload, not every tick.
+  # Color/format: &0-&9, &a-&f, &k-&o, &r. Example: "&bCasa".
+  lines:
+    - "&bBienvenid@ a {title}"
+    - "&7Dueño: &f{owner}"
+    - "&8{x}, {y}, {z}"
+    - "&7{description}"

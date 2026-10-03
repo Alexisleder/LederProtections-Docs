@@ -1,0 +1,1465 @@
+# ==================================================================================================
+# LederProtections - English language file
+# --------------------------------------------------------------------------------------------------
+# Color format: use '&' as the Minecraft color code character.
+# Placeholders: do not change text inside braces, for example {player}, {id}, {name}.
+# Recommendation: keep text short so GUIs and chat remain clean.
+# Brand: use &fLeder&bProtections for visible plugin branding.
+# ==================================================================================================
+
+messages:
+  # -----------------------------------------------------------------------------------------------
+  # General plugin messages
+  # -----------------------------------------------------------------------------------------------
+  plugin:
+    enabled: "&fLeder&bProtections &aenabled."
+    unlimited: "&aUnlimited"
+    disabled: "&fLeder&bProtections &cdisabled."
+    reloaded: "&aConfiguration reloaded."
+
+
+  # -----------------------------------------------------------------------------------------------
+  # Update checker
+  # -----------------------------------------------------------------------------------------------
+  update:
+    available: "&eA new &fLeder&bProtections &eversion is available: &f{latest} &7(current: &f{current}&7)."
+    download: "&7Download: &f{url}"
+
+  # -----------------------------------------------------------------------------------------------
+  # Action bar messages
+  # -----------------------------------------------------------------------------------------------
+  actionbar:
+    protection-enter: "&aEntered &f{owner}&a's protection."
+    protection-exit: "&eLeft &f{owner}&e's protection."
+
+  preferences:
+    actionbar-entry-exit-enabled: "&aProtection notices enabled."
+    actionbar-entry-exit-disabled: "&7Protection notices disabled."
+
+  # -----------------------------------------------------------------------------------------------
+  # Internal console messages
+  # -----------------------------------------------------------------------------------------------
+  console:
+    data-folder-create-failed: "Could not create the plugin data folder."
+    stones-resource-missing: "stones.yml does not exist in resources. External file loading will be attempted if available."
+    stone-section-missing: "Could not find the 'stones' section in stones.yml."
+    stone-load-failed: "Could not load protection stone '{id}': {reason}"
+    stone-none-loaded: "No protection stone types were loaded from stones.yml."
+    stone-loaded-count: "Protection stone types loaded from stones.yml: {count}"
+
+  # -----------------------------------------------------------------------------------------------
+  # Command messages
+  # -----------------------------------------------------------------------------------------------
+  command:
+    player-only: "&cPlayers only."
+    no-permission: "&cNo permission."
+    player-not-online: "&cPlayer is not online."
+    invalid-amount: "&cInvalid amount."
+    invalid-type: "&cInvalid type: &e{type}"
+    available-types: "&7Types: &f{types}"
+    protection-required: "&cStand inside a protection or provide its ID."
+    protection-not-found: "&cProtection not found: &f{id}&c."
+    invalid-toggle: "&cInvalid value. Use on/off."
+    state-enabled: "&aYes"
+    state-disabled: "&cNo"
+
+    # Protection teleport home
+    sethome-disabled: "&cSethome is disabled."
+    sethome-no-access: "&cYou cannot change this teleport point."
+    sethome-outside: "&cThe point must be inside the protection."
+    sethome-unsafe: "&cThat point is not safe for teleporting."
+    sethome-success: "&aTeleport point updated in &f{name}&a. &7{x}, {y}, {z}"
+
+    # Protection stone delivery
+    give-usage: "&cCorrect usage: /{label} give <player> <type> <amount>"
+    give-sender: "&aGave &e{amount} &a{type} stone(s) to &e{player}&a."
+    give-target: "&aReceived &e{amount} &a{type} protection stone(s)."
+    reload: "&aReloaded. &7Types: &f{types}"
+
+    # Rename protection
+    rename-usage: "&cCorrect usage: /{label} rename [id] <new name>"
+    rename-not-found: "&cProtection not found: &e{id}"
+    rename-no-access: "&cOnly the owner can rename this."
+    rename-success: "&aName updated: &f{name}&a."
+
+    # Transfer protection
+    transfer-usage: "&cCorrect usage: /{label} transfer [id] <player>"
+    transfer-not-found: "&cProtection not found: &e{id}"
+    transfer-no-access: "&cOnly the owner can transfer this."
+    transfer-player-unknown: "&cPlayer not found: &e{player}&c."
+    transfer-same-owner: "&e{player} &cis already the owner."
+    transfer-worldguard-failed: "&cWorldGuard could not transfer the owner."
+    transfer-success: "&aOwner updated: &e{player}&a."
+    transfer-target: "&aYou now own &e{id}&a."
+
+    # Co-owners
+    coowner-usage: "&cCorrect usage: /{label} coowner <add|remove|list|flags|members> [id] [player|on|off]"
+    coowner-add-usage: "&cCorrect usage: /{label} coowner add [id] <player>"
+    coowner-remove-usage: "&cCorrect usage: /{label} coowner remove [id] <player>"
+    coowner-not-found: "&cProtection not found: &e{id}"
+    coowner-no-access: "&cOnly the owner can manage co-owners."
+    coowner-player-unknown: "&cPlayer not found: &e{player}&c."
+    coowner-is-owner: "&e{player} &cis the owner."
+    coowner-already-added: "&e{player} &cis already a co-owner."
+    coowner-not-coowner: "&e{player} &cis not a co-owner."
+    coowner-worldguard-failed: "&cWorldGuard could not update co-owners."
+    coowner-add-success: "&aCo-owner added: &e{player}&a."
+    coowner-add-target: "&aYou are now co-owner of &e{id}&a."
+    coowner-remove-success: "&aCo-owner removed: &e{player}&a."
+    coowner-list-empty: "&eNo co-owners in &f{id}&e."
+    coowner-list-header: "&aCo-owners of &e{id}&a:"
+    coowner-setting-usage: "&cCorrect usage: /{label} coowner {setting} [id] <on|off>"
+    coowner-setting-updated: "&aCo-owner settings updated."
+    coowner-setting-flags: "&7Edit rules: {state}"
+    coowner-setting-members: "&7Manage members: {state}"
+
+    # Members
+    member-usage: "&cCorrect usage: /{label} member <add|remove|list> [id] [player]"
+    member-add-usage: "&cCorrect usage: /{label} member add [id] <player>"
+    member-remove-usage: "&cCorrect usage: /{label} member remove [id] <player>"
+    member-not-found: "&cProtection not found: &e{id}"
+    member-no-access: "&cYou cannot manage members here."
+    member-player-unknown: "&cPlayer not found: &e{player}&c."
+    member-is-owner: "&e{player} &cis the owner."
+    member-already-added: "&e{player} &cis already a member."
+    member-not-member: "&e{player} &cis not a member."
+    member-worldguard-failed: "&cWorldGuard could not update members."
+    member-add-success: "&aMember added: &e{player}&a."
+    member-add-target: "&aYou are now a member of &e{id}&a."
+    member-remove-success: "&aMember removed: &e{player}&a."
+    member-list-empty: "&eNo members in &f{id}&e."
+    member-list-header: "&aMembers of &e{id}&a:"
+
+    # Blocked players
+    block-usage: "&cCorrect usage: /{label} block <add|remove|list>"
+    block-add-usage: "&cCorrect usage: /{label} block add [id] <player>"
+    block-remove-usage: "&cCorrect usage: /{label} block remove [id] <player>"
+    block-no-access: "&cOnly the owner can manage blocked players."
+    block-player-unknown: "&cPlayer not found: &e{player}&c."
+    block-is-owner: "&cYou cannot block the owner."
+    block-is-admin: "&cYou cannot block an admin."
+    block-already-added: "&e{player} &cis already blocked."
+    block-not-blocked: "&e{player} &cis not blocked."
+    block-worldguard-failed: "&cWorldGuard could not sync blocked players."
+    block-add-success: "&aPlayer blocked: &e{player}&a."
+    block-remove-success: "&aPlayer unblocked: &e{player}&a."
+    block-add-target: "&cYou were blocked in &f{id}&c."
+    block-list-empty: "&aNo blocked players in &f{id}&a."
+    block-list-header: "&eBlocked players in &f{id}&e:"
+
+    # Diagnostics
+    check:
+      summary: "&eCheck done. &7Protections: &f{checked} &8| &7Issues: &f{issues}"
+      no-issues: "&aNo issues found."
+      issues-header: "&cIssues:"
+      issue:
+        world-missing: "&8- &c{id}: world &e{world} &cdoes not exist or is not loaded."
+        type-missing: "&8- &c{id}: protection stone type &e{type} &cno longer exists in stones.yml."
+        bounds-world-mismatch: "&8- &c{id}: bounds world (&e{bounds_world}&c) does not match record world (&e{record_world}&c)."
+        bounds-height-outside-world: "&8- &c{id}: bounds Y (&e{min_y}..{max_y}&c) is outside world height (&e{world_min_y}..{world_max_y}&c)."
+        stone-outside-bounds: "&8- &c{id}: registered stone at &e{x}, {y}, {z} &cis outside its own bounds."
+        stone-height-outside-world: "&8- &c{id}: stone Y (&e{y}&c) is outside world height (&e{world_min_y}..{world_max_y}&c)."
+        stone-material-mismatch: "&8- &c{id}: stone block mismatch. Expected: &e{expected}&c, actual: &e{actual}&c."
+        worldguard-region-id-empty: "&8- &c{id}: WorldGuard region id is empty."
+        worldguard-orphan-region: "&8- &cWorldGuard: region &e{region} &cin world &e{world} &clooks like a LederProtections region, but it is not present in protections.yml."
+        worldguard-region-missing: "&8- &c{id}: WorldGuard region &e{region} &cdoes not exist."
+        owner-listed-as-coowner: "&8- &c{id}: owner is also listed as co-owner."
+        owner-listed-as-member: "&8- &c{id}: owner is also listed as member."
+        coowner-listed-as-member: "&8- &c{id}: &e{player} &cis listed as co-owner and member at the same time."
+
+    # Sync
+    sync:
+      success: "&aSynced. &7Protections: &f{protections} &8| &7Chunks: &f{chunks}"
+      clean: "&aNo issues after sync."
+      warning: "&eSynced with &f{issues} &ewarning(s). Use &f/lep check&e."
+
+    # Repair
+    repair:
+      usage: "&cCorrect usage: /{label} repair <index|worldguard-members|missing-region|orphan-regions|missing-stones>"
+      unknown-action: "&cUnknown repair action: &e{action}&c."
+      index-success: "&aIndex rebuilt. &7Protections: &f{protections} &8| &7Chunks: &f{chunks}"
+      index-clean: "&aIndex clean."
+      index-warning: "&eIndex rebuilt with &f{issues} &ewarning(s)."
+      worldguard-members-success: "&aWorldGuard synced. &7OK: &f{repaired} &8| &7Skipped: &f{skipped} &8| &7Failed: &f{failed}"
+      worldguard-members-clean: "&aNo issues were found after syncing WorldGuard."
+      worldguard-members-warning: "&eWorldGuard was synced, but &f{issues} &eissues still remain. Use &f/lep check &efor details."
+      missing-region-success: "&aRegions checked. &7Recreated: &f{repaired} &8| &7Failed: &f{failed}"
+      missing-region-clean: "&aNo issues were found after repairing missing regions."
+      missing-region-warning: "&eMissing regions were repaired, but &f{issues} &eissues still remain. Use &f/lep check &efor details."
+      orphan-regions-usage: "&cCorrect usage: /{label} repair orphan-regions <check|confirm>"
+      orphan-regions-none: "&aNo orphan regions."
+      orphan-regions-found: "&eOrphan regions: &f{count}"
+      orphan-regions-entry: "&8- &e{world} &7/ &f{region}"
+      orphan-regions-confirm-hint: "&cReview the list before deleting. To remove these regions use: &f/{label} repair orphan-regions confirm"
+      orphan-regions-deleted: "&aOrphans deleted: &f{deleted}&a. Failed: &f{failed}"
+      orphan-regions-clean: "&aNo issues were found after deleting orphan regions."
+      orphan-regions-warning: "&eOrphan regions were deleted, but &f{issues} &eissues still remain. Use &f/lep check &efor details."
+      missing-stones-usage: "&cCorrect usage: /{label} repair missing-stones <check|confirm>"
+      missing-stones-none: "&aNo missing stones."
+      missing-stones-found: "&eMissing/changed stones: &f{count}"
+      missing-stones-entry: "&8- &f{id} &7at &e{world}:{x},{y},{z} &7expected=&a{expected} &7actual=&c{actual} &7state=&f{state}"
+      missing-stones-confirm-hint: "&cOnly air blocks will be restored. Review the list and use: &f/{label} repair missing-stones confirm"
+      missing-stones-repaired: "&aStones restored: &f{repaired}&a. Skipped: &f{skipped}&a. Failed: &f{failed}"
+      missing-stones-clean: "&aNo issues were found after repairing physical stones."
+      missing-stones-warning: "&ePhysical stones were repaired, but &f{issues} &eissues still remain. Use &f/lep check &efor details."
+
+    # Migration and backup tooling
+    migration:
+      help: "&7/{label} migrate protectionstones <scan|import|suggest-stones> [--dry-run] [--mode exact|nearest] [--world world] [--region id] [--keep-source-stones]"
+      usage: "&cCorrect usage: /{label} migrate protectionstones <scan|import|suggest-stones> [regionId] [--dry-run] [--mode exact|nearest] [--world world] [--region id] [--place-stones] [--keep-source-stones] [--keep-source-flags] [--suggest-missing-tiers] [--verbose]"
+      start: "&eStarting safe ProtectionStones migration scan..."
+      nearest-warning: "&eNearest mode may resize imported protections. Use exact mode for strict migration."
+      scan-complete: "&aProtectionStones scan complete. &7Detected: &f{detected} &8| &7Importable: &f{importable} &8| &7Missing tiers: &f{missing_tiers} &8| &7Already: &f{already} &8| &7Conflicts: &f{conflicts} &8| &7Skipped: &f{skipped} &8| &7Report: &f{report}"
+      dry-run-complete: "&aProtectionStones migration dry-run complete. &7Detected: &f{detected} &8| &7Importable: &f{importable} &8| &7Missing tiers: &f{missing_tiers} &8| &7Already: &f{already} &8| &7Conflicts: &f{conflicts} &8| &7Skipped: &f{skipped} &8| &7Would place: &f{would_place} &8| &7Would replace: &f{would_replace} &8| &7Report: &f{report} &8| &7Suggested: &f{suggested}"
+      import-complete: "&aProtectionStones migration complete. &7Detected: &f{detected} &8| &7Imported: &f{imported} &8| &7Missing tiers: &f{missing_tiers} &8| &7Already: &f{already} &8| &7Conflicts: &f{conflicts} &8| &7Skipped: &f{skipped} &8| &7Failed: &f{failed} &8| &7Report: &f{report} &8| &7Suggested: &f{suggested}"
+      suggest-stones-complete: "&aSuggested missing stone tiers generated. &7Missing tiers: &f{missing_tiers} &8| &7Report: &f{report} &8| &7Suggested: &f{suggested}"
+      single-scan-complete: "&aSingle ProtectionStones region scan complete. &7Detected: &f{detected} &8| &7Importable: &f{importable} &8| &7Missing tiers: &f{missing_tiers} &8| &7Report: &f{report}"
+      single-dry-run-complete: "&aSingle ProtectionStones region dry-run complete. &7Detected: &f{detected} &8| &7Importable: &f{importable} &8| &7Missing tiers: &f{missing_tiers} &8| &7Report: &f{report} &8| &7Suggested: &f{suggested}"
+      single-import-complete: "&aSingle ProtectionStones region import complete. &7Detected: &f{detected} &8| &7Imported: &f{imported} &8| &7Missing tiers: &f{missing_tiers} &8| &7Skipped: &f{skipped} &8| &7Failed: &f{failed} &8| &7Report: &f{report} &8| &7Suggested: &f{suggested}"
+      no-candidates: "&eNo ProtectionStones candidates were found."
+      region-not-found: "&cProtectionStones region not found in loaded worlds: &f{region}"
+      region-multiple-worlds: "&cRegion &f{region} &cexists in multiple worlds: &f{worlds}&c. Add --world <world>."
+      missing-worldguard: "&cWorldGuard is required for migration."
+      missing-worldedit: "&cWorldEdit is required for migration."
+      candidate-skipped: "&eCandidate skipped: &f{region} &7({reason})"
+      conflict-detected: "&cConflict detected: &f{region}"
+      missing-owner: "&cMissing owner; candidate skipped."
+      missing-world: "&cWorld missing; candidate skipped."
+      unsupported-shape: "&cUnsupported region shape; candidate skipped."
+      unknown-size: "&cUnknown protection size; candidate skipped."
+      missing-tier: "&cNo exact LederProtections stone tier exists for this radius. Add a tier to stones.yml or use --mode nearest."
+      stone-missing: "&eSource stone missing. Use --place-stones only after reviewing the report."
+      stone-conflict: "&cStone conflict; candidate skipped."
+      stone-would-be-placed: "&eDry-run: a mapped LederProtections stone would be placed."
+      stone-would-be-replaced: "&eDry-run: a safe source stone would be replaced with the mapped LederProtections material."
+      stone-replaced: "&aSource stone replaced with the mapped LederProtections material."
+      stone-kept: "&eSource stone kept."
+      stone-material-differs: "&eSource stone differs from the mapped LederProtections material."
+      keep-source-stones-hint: "&7Use --keep-source-stones to preserve original source blocks."
+      unsafe-stone-replace: "&cUnsafe block cannot be replaced."
+      already-imported: "&eAlready imported; candidate skipped."
+      import-failed: "&cImport failed for one or more candidates. Review the report."
+      rollback-failed: "&cRollback after replacement failed. Review console logs immediately."
+
+    export:
+      help: "&7/{label} export protections"
+      usage: "&cCorrect usage: /{label} export protections"
+      complete: "&aProtections exported: &f{count}&a. &7File: &f{file}"
+      failed: "&cExport failed: &f{reason}"
+
+    import:
+      help: "&7/{label} import protections <file> [--dry-run]"
+      usage: "&cCorrect usage: /{label} import protections <file> [--dry-run] [--verbose]"
+      file-not-found: "&cImport file not found: &f{file}"
+      dry-run-complete: "&aNative import dry-run complete. &7Total: &f{total} &8| &7Importable: &f{importable} &8| &7Already: &f{already} &8| &7Conflicts: &f{conflicts} &8| &7Skipped: &f{skipped} &8| &7Failed: &f{failed} &8| &7Report: &f{report}"
+      complete: "&aNative import complete. &7Total: &f{total} &8| &7Imported: &f{imported} &8| &7Already: &f{already} &8| &7Conflicts: &f{conflicts} &8| &7Skipped: &f{skipped} &8| &7Failed: &f{failed} &8| &7Report: &f{report}"
+      failed: "&cImport could not continue: &f{reason}"
+
+    # Temporary development commands. Only work with debug: true.
+    debug-disabled: "&cDebug is disabled."
+    debug-usage: "&cCorrect usage: /{label} debug <fake|clear-fakes>"
+    debug-fake-usage: "&cCorrect usage: /{label} debug fake <members|coowners|blocked> [id] <amount>"
+    debug-fake-success: "&aFakes added: &f{amount} &7({type})&a."
+    debug-clear-fakes-success: "&aFakes removed from &f{id}&a."
+
+  # -----------------------------------------------------------------------------------------------
+  # Protection and player action messages
+  # -----------------------------------------------------------------------------------------------
+  protection:
+    world-not-found: "&cWorld not found."
+    world-not-allowed: "&cYou cannot protect this world."
+    type-missing: "&cThis stone type no longer exists."
+    no-type-permission: "&cNo permission for this stone."
+    overlap: "&cThis area overlaps another protection."
+    save-failed: "&cCould not save. Change cancelled."
+    worldguard-create-failed: "&cWorldGuard could not create the region."
+    created: "&aProtection created. &7ID: &f{id}"
+    break-not-owner: "&cOnly the owner can break this stone."
+    worldguard-delete-failed: "&cWorldGuard could not delete the region."
+    deleted: "&aProtection removed. &7Stone returned."
+    stone-return-type-missing: "&eProtection removed, but the stone could not be returned."
+    gui-no-access: "&cYou cannot manage this protection."
+    gui-access-lost: "&cYou no longer have access."
+    gui-world-missing: "&cWorld unavailable."
+    invalid-stone-type: "&cInvalid protection stone."
+    global-limit-reached: "&cGlobal limit reached. &7{current}/{max}"
+    limit-reached: "&cLimit for &f{type} &creached. Max: &f{max}"
+
+    # Teleport
+    teleport-disabled: "&cTeleport disabled."
+    teleport-cooldown: "&cWait &e{seconds}s &cbefore using this again."
+    teleport-warmup-start: "&eTeleport in &6{seconds}s&e. Do not move."
+    teleport-warmup-cancelled-move: "&cCancelled: you moved."
+    teleport-warmup-cancelled-world-change: "&cCancelled: world changed."
+    teleport-warmup-cancelled-damage: "&cCancelled: you took damage."
+    teleport-no-economy: "&cEconomy unavailable."
+    teleport-invalid-cost: "&cInvalid teleport cost."
+    teleport-not-enough-money: "&cNot enough money. &7Cost: &e{cost}"
+    teleport-transaction-failed: "&cCould not charge teleport."
+    teleport-paid: "&aCharged: &e{cost}&a."
+    teleport-success: "&aTeleported to &f{name}&a."
+    teleport-world-missing: "&cWorld unavailable."
+    teleport-already-pending: "&cYou already have a pending teleport."
+    teleport-no-safe-location: "&cNo safe location found."
+    teleport-home-unsafe: "&cThe teleport point is no longer safe. Use /p sethome."
+    teleport-protection-missing: "&cProtection unavailable."
+    teleport-failed: "&cTeleport failed."
+    teleport-refunded: "&eRefunded: &f{cost}&e."
+    teleport-refund-failed: "&cRefund failed. Contact staff. &7Amount: &f{cost}"
+    teleport-warmup-cancelled-external: "&cCancelled: external movement."
+    teleport-warmup-cancelled-gamemode: "&cCancelled: game mode changed."
+
+    # GUI management
+    member-action-no-access: "&cNo permission for this action."
+    member-role-changed: "&aRole updated: &e{player}&a."
+    member-role-change-failed: "&cCould not change role."
+    member-removed: "&aPlayer removed: &e{player}&a."
+    member-remove-failed: "&cCould not remove player."
+    blocked-removed: "&aPlayer unblocked: &e{player}&a."
+    rule-updated: "&aRule updated: &f{action} &8→ {state}"
+    environment-updated: "&aEnvironment policy updated: &f{flag} &8→ {state}"
+    rule-reset-success: "&aRules for &f{role} &areset."
+    rule-reset-empty: "&e{role} &7has no custom rules."
+
+  # -----------------------------------------------------------------------------------------------
+  # Legacy flags and internal rules messages
+  # -----------------------------------------------------------------------------------------------
+  flags:
+    updated: "&aFlag &e{flag} &aupdated to &f{state}&a."
+    update-failed: "&cCould not update flag: &e{flag}"
+    unsupported: "&cThis flag is not supported yet."
+
+  rules:
+    denied: "&cYou cannot do that here."
+    denied-owned-by: "&cYou cannot do that in &e{name}&c."
+
+  # -----------------------------------------------------------------------------------------------
+  # Protection shop
+  # -----------------------------------------------------------------------------------------------
+  common:
+    full-height: "Full height"
+
+  shop:
+    title: "&8Protection shop"
+    confirm-title: "&8Confirm purchase &7| &f{type}"
+
+    info-name: "&b&lProtection shop"
+    info-lore:
+      - "&7Buy protection stones"
+      - "&7to protect your areas."
+      - ""
+      - "&fAvailable stones: &b{types}"
+      - "&fYour balance: &a{balance}"
+      - ""
+      - "&eClick a stone to buy."
+
+    close-name: "&c&lClose"
+    close-lore:
+      - "&7Close the shop."
+
+    empty-slot-name: "&8Empty slot"
+    empty-slot-lore:
+      - "&7There is no stone available here."
+
+    item-extra-lore:
+      - "&8&m-----------------------------"
+      - "&fPrice: &a{cost}"
+      - "&fBalance: &e{balance}"
+      - "&fStatus: &b{available}"
+      - ""
+      - "&eClick to buy."
+
+    confirm-name: "&a&lConfirm purchase"
+    confirm-lore:
+      - "&7You will buy protection stone &f{type}&7."
+      - ""
+      - "&fPrice: &a{cost}"
+      - "&fYour balance: &e{balance}"
+      - ""
+      - "&eClick to confirm."
+
+    cancel-name: "&c&lCancel"
+    cancel-lore:
+      - "&7No money will be charged."
+      - ""
+      - "&eClick to go back."
+
+    availability:
+      available: "&aAvailable"
+      no-permission: "&cNo permission"
+      limit-reached: "&cLimit reached"
+      not-enough-money: "&cNot enough money"
+
+    disabled: "&cShop disabled."
+    no-permission: "&cNo permission for the shop."
+    no-type-permission: "&cNo permission for this stone."
+    type-disabled: "&cThis stone is not available."
+    type-missing: "&cThis type no longer exists."
+    no-economy: "&cEconomy unavailable."
+    not-enough-money: "&cNot enough money. &7Cost: &f{cost}"
+    transaction-failed: "&cPurchase cancelled: payment failed."
+    invalid-cost: "&cInvalid price. Notify staff."
+    inventory-full: "&cInventory full."
+    purchased: "&aPurchased: &f{type} &7({cost})&a."
+
+  # -----------------------------------------------------------------------------------------------
+  # Protection upgrades
+  # -----------------------------------------------------------------------------------------------
+  upgrade:
+    disabled: "&cUpgrades disabled."
+    no-permission: "&cNo permission to upgrade."
+    not-owner: "&cOnly the owner can upgrade."
+    world-missing: "&cWorld unavailable."
+    current-type-missing: "&cCurrent type missing: &f{type}"
+    not-upgradeable: "&cThis protection cannot be upgraded."
+    next-type-missing: "&cUpgrade not found: &f{type}"
+    next-not-larger: "&cConfigured upgrade does not increase size."
+    overlap: "&cUpgrade overlaps another protection."
+    no-economy: "&cEconomy unavailable."
+    invalid-cost: "&cInvalid cost. Notify staff."
+    not-enough-money: "&cNot enough money. &7Cost: &f{cost}"
+    transaction-failed: "&cCould not charge upgrade."
+    protection-missing: "&cProtection unavailable: &f{id}"
+    protection-changed: "&cProtection changed. Reopen the menu."
+    stone-mismatch: "&cPhysical stone does not match."
+    stone-change-failed: "&cCould not change the stone. Rollback attempted."
+    save-failed: "&cCould not save upgrade. Rollback attempted."
+    worldguard-failed: "&cWorldGuard could not update the region."
+    refunded: "&eRefunded: &f{cost}&e."
+    refund-failed: "&cRefund failed. Contact staff. &7Amount: &f{cost}"
+    success: "&aUpgrade applied: &f{from} &7→ &f{to} &8({cost})"
+  border:
+    disabled: "&cBorders disabled."
+    no-access: "&cNo permission to view borders."
+    not-inside: "&cStand inside a protection to view its border."
+    world-missing: "&cWorld unavailable."
+    started: "&aBorder visible for &f{seconds}s&a. Run again to hide."
+    cancelled: "&eBorder hidden."
+    finished: "&7Border finished."
+    cooldown: "&cWait &f{seconds}s &cbefore showing it again."
+  directory:
+    disabled: "&cThe public directory is disabled."
+    empty: "&7There are no protections to display yet."
+    private: "&cThis protection is no longer public."
+    closed: "&eThis protection is public, but visits are closed."
+    blocked: "&cThe owner blocked you from this protection."
+    cross-world-disabled: "&cYou cannot visit protections in another world."
+    public-limit: "&cYou reached your public protection limit."
+    save-failed: "&cThe public profile could not be saved."
+    saved: "&aPublic profile updated."
+    favorite-added: "&aProtection added to favorites."
+    favorite-removed: "&eProtection removed from favorites."
+    favorite-unavailable: "&cThis protection can no longer be favorited."
+    visit-point-unsafe: "&cStand at a safe position inside the protection."
+    teleport-already-pending: "&cYou already have a pending visit."
+    teleport-warmup: "&eTeleporting in &f{seconds} &eseconds. Do not move or take damage."
+    teleport-cooldown: "&cWait &f{seconds} &cseconds before visiting again."
+    teleport-success: "&aYou visited &f{name}&a."
+    input-prompt: "&eType the new value for &f{field}&e. Use &fcancel &eto cancel or &fclear &eto clear it. You have {seconds}s."
+    input-timeout: "&cEditing timed out."
+    input-cancelled: "&eEditing cancelled."
+    input-invalid-empty: "&cThis field cannot be empty."
+    input-invalid-too-long: "&cThe text exceeds the &f{max} &ccharacter limit."
+    input-invalid-blocked-word: "&cThe text contains a blocked word."
+# ==================================================================================================
+# stones.yml validation
+# ==================================================================================================
+validation:
+  stone:
+    invalid-material: "Invalid material: {material}"
+    material-not-block: "The material must be a placeable block: {material}"
+    material-air: "The material cannot be air."
+    material-blocked: "This material is not allowed as a protection stone: {material}"
+    material-not-solid: "The material must be a solid block: {material}"
+    radius-positive: "{path} must be greater than 0."
+    radius-positive-or-full-height: "{path} must be greater than 0 or -1."
+    radius-too-large: "{path} exceeds the safe maximum of {max}."
+    max-protections-too-low: "max-protections cannot be lower than -1."
+    permission-empty: "permission cannot be empty."
+    display-name-empty: "display-name cannot be empty."
+    id-empty: "The id cannot be empty."
+    id-sanitized-empty: "The id became empty after sanitizing."
+    id-too-long: "The id cannot be longer than {max} characters."
+    id-duplicated: "Duplicated ID after sanitizing: '{id}'."
+
+# ==================================================================================================
+# GUIs
+# ==================================================================================================
+gui:
+  # -----------------------------------------------------------------------------------------------
+  # Common elements
+  # -----------------------------------------------------------------------------------------------
+  common:
+    enabled: "&aEnabled"
+    disabled: "&cDisabled"
+    unlimited: "&aUnlimited"
+    full-height: "Full height"
+    back-name: "&eBack"
+    back-lore:
+      - "&7Return to the previous menu."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Close this menu."
+    previous-name: "&ePrevious page"
+    previous-lore:
+      - "&7Return to the previous page."
+    next-name: "&eNext page"
+    next-lore:
+      - "&7Go to the next page."
+    back: "&eBack"
+    back-lore:
+      - "&7Return to the previous menu."
+    close: "&cClose"
+    close-lore:
+      - "&7Close this menu."
+
+  # -----------------------------------------------------------------------------------------------
+  # /p, /protecciones, /protections: player's protection list
+  # -----------------------------------------------------------------------------------------------
+  protection-list:
+    title: "&8Protections menu"
+    info-name: "&eMy protections"
+    info-lore:
+      - "&7Available protections: &f{count}"
+      - ""
+      - "&fLeft click: &7Teleport"
+      - "&fRight click: &7Manage"
+    protection-name: "&f{name}"
+    protection-lore:
+      - "&7Role: {role}"
+      - "&7World: &f{world}"
+      - "&7Location: &f{x}, {y}, {z}"
+      - "&7Size: &f{size_x} x {size_y} x {size_z}"
+      - ""
+      - "&fLeft click: &7Teleport"
+      - "&fRight click: &7Manage"
+    role-owner: "&aOwner"
+    role-coowner: "&eCo-owner"
+    role-member: "&bMember"
+    role-admin: "&cAdmin"
+    role-unknown: "&7Unknown"
+    empty-slot-name: "&7Empty slot"
+    empty-slot-lore:
+      - "&8No protection."
+    previous-page-name: "&ePrevious page"
+    previous-page-lore:
+      - "&7Return to page {page}."
+    next-page-name: "&eNext page"
+    next-page-lore:
+      - "&7Go to page {page}."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+    directory-name: "&bPublic protections"
+    directory-lore:
+      - "&7Explore public places from other players."
+      - ""
+      - "&eClick to open."
+    shop-name: "&b&lProtection shop"
+    shop-lore:
+      - "&7Buy new protection stones"
+      - "&7directly from this menu."
+      - ""
+      - "&eClick to open the shop."
+    notifications-enabled-name: "&aNotices enabled"
+    notifications-enabled-lore:
+      - "&7You will see a notice when entering"
+      - "&7or leaving a protection."
+      - ""
+      - "&eClick to disable."
+    notifications-disabled-name: "&7Notices disabled"
+    notifications-disabled-lore:
+      - "&7You will not see notices when entering"
+      - "&7or leaving protections."
+      - ""
+      - "&eClick to enable."
+
+
+  # -----------------------------------------------------------------------------------------------
+  # /lep admin: global admin protection browser
+  # -----------------------------------------------------------------------------------------------
+  admin-list:
+    title: "&8Server protections"
+    info-name: "&cAdmin view"
+    info-lore:
+      - "&7Showing: &f{count}&7/&f{total}"
+      - "&7Page: &f{page}&7/&f{max_page}"
+      - "&7Filter: &f{filter}"
+      - "&7Sort: &f{sort}"
+      - ""
+      - "&7Use filters from command:"
+      - "&f/lep admin owner:Alex"
+      - "&f/lep admin world:world type:x8"
+      - "&f/lep admin home sort:newest"
+      - ""
+      - "&e/p only shows your personal protections."
+    filter-none: "None"
+    filter-query: "Search"
+    filter-owner: "Owner"
+    filter-world: "World"
+    filter-type: "Type"
+    sort-mode:
+      owner: "Owner"
+      name: "Name"
+      world: "World"
+      type: "Type"
+      newest: "Newest"
+      oldest: "Oldest"
+    created-unknown: "Unknown"
+    protection-name: "&f{name}"
+    protection-lore:
+      - "&7ID: &f{id}"
+      - "&7Owner: &f{owner}"
+      - "&7Type: &f{type}"
+      - "&7World: &f{world}"
+      - "&7Stone: &f{x}, {y}, {z}"
+      - "&7Created: &f{created_at}"
+      - "&7Size: &f{size_x} x {size_y} x {size_z}"
+      - ""
+      - "&7Co-owners: &f{coowners}"
+      - "&7Members: &f{members}"
+      - "&7Blocked: &f{blocked}"
+      - ""
+      - "&fLeft click: &7Teleport"
+      - "&fRight click: &7Manage &8(admin)"
+    empty-slot-name: "&7Empty slot"
+    empty-slot-lore:
+      - "&8No protection."
+    previous-page-name: "&ePrevious page"
+    previous-page-lore:
+      - "&7Return to page {page}."
+    next-page-name: "&eNext page"
+    next-page-lore:
+      - "&7Go to page {page}."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+    player-list-name: "&bMy protections"
+    sort-name: "&bChange sort"
+    sort-lore:
+      - "&7Current sort: &f{sort}"
+      - ""
+      - "&eClick to change."
+    clear-filter-name: "&cClear filters"
+    clear-filter-lore:
+      - "&7Removes search, owner, world"
+      - "&7and type from the current view."
+      - ""
+      - "&eClick to clear."
+    player-list-lore:
+      - "&7Return to the normal player menu."
+      - ""
+      - "&eClick to open /p."
+
+  # -----------------------------------------------------------------------------------------------
+  # Specific protection main GUI
+  # -----------------------------------------------------------------------------------------------
+  main:
+    title: "&8Protection menu"
+    info-name: "&eInformation"
+    info-lore:
+      - "&7Name: &f{name}"
+      - "&7Owner: &f{owner}"
+      - "&7Type: &f{type}"
+      - "&7World: &f{world}"
+      - "&7Created: &f{created_at}"
+      - ""
+      - "&8ID: {id}"
+    area-name: "&bProtected area"
+    area-lore:
+      - "&7Stone: &f{x}, {y}, {z}"
+      - "&7Size: &f{size_x} x {size_y} x {size_z}"
+    public-status-name: "&bPublic profile"
+    public-status-lore:
+      - "&7Visibility: {visibility}"
+      - "&7Category: &f{category}"
+      - "&7Visits: &f{visits}"
+    description-name: "&eDescription"
+    description-lore:
+      - "&f{description}"
+    visit-name: "&bVisit protection"
+    visit-lore:
+      - "&7State: {state}"
+      - ""
+      - "&eClick to teleport."
+    favorite-name: "&eFavorite"
+    favorite-lore:
+      - "&7State: {state}"
+      - ""
+      - "&eClick to change."
+    public-settings-name: "&aEdit public profile"
+    public-settings-lore:
+      - "&7Configure icon, description, category,"
+      - "&7visits, hologram, and welcome message."
+      - ""
+      - "&eClick to edit."
+    my-protections-name: "&aMy protections"
+    my-protections-lore:
+      - "&7Open your protection list."
+    directory-name: "&bPublic protections"
+    directory-lore:
+      - "&7Open the public directory."
+    management-name: "&aManagement"
+    management-lore:
+      - "&7Manage members, rules"
+      - "&7and co-owner permissions."
+      - ""
+      - "&eClick to open."
+
+    upgrade-name: "&aUpgrade protection"
+    upgrade-lore:
+      - "&7Expand the size of this protection"
+      - "&7using the configured next stone."
+      - ""
+      - "&eClick to preview the upgrade."
+    back-name: "&eBack"
+    back-lore:
+      - "&7Return to your protections."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  # -----------------------------------------------------------------------------------------------
+  # Protection stone shop GUI
+  # -----------------------------------------------------------------------------------------------
+  shop:
+    title: "&8Protection shop"
+    confirm-title: "&8Confirm purchase &7| &f{type}"
+
+    info-name: "&b&lProtection shop"
+    info-lore:
+      - "&7Buy protection stones"
+      - "&7to protect your areas."
+      - ""
+      - "&fAvailable stones: &b{types}"
+      - "&fYour balance: &a{balance}"
+      - ""
+      - "&eClick a stone to buy."
+
+    close-name: "&c&lClose"
+    close-lore:
+      - "&7Close the shop."
+
+    empty-slot-name: "&8Empty slot"
+    empty-slot-lore:
+      - "&7There is no stone available here."
+
+    item-extra-lore:
+      - "&8&m-----------------------------"
+      - "&fPrice: &a{cost}"
+      - "&fBalance: &e{balance}"
+      - "&fStatus: &b{available}"
+      - "&fType limit: &e{current_type}&7/&e{max_type}"
+      - "&fGlobal limit: &e{current_global}&7/&e{max_global}"
+      - ""
+      - "&eClick to buy."
+
+    confirm-name: "&a&lConfirm purchase"
+    confirm-lore:
+      - "&7You will buy protection stone &f{type}&7."
+      - ""
+      - "&fPrice: &a{cost}"
+      - "&fYour balance: &e{balance}"
+      - ""
+      - "&eClick to confirm."
+
+    cancel-name: "&c&lCancel"
+    cancel-lore:
+      - "&7No money will be charged."
+      - ""
+      - "&eClick to go back."
+
+    availability:
+      available: "&aAvailable"
+      no-permission: "&cNo permission"
+      limit-reached: "&cLimit reached"
+      not-enough-money: "&cNot enough money"
+
+
+  # -----------------------------------------------------------------------------------------------
+  # Protection upgrade confirmation
+  # -----------------------------------------------------------------------------------------------
+  upgrade:
+    confirm-title: "&8Confirm upgrade"
+    confirm-name: "&a&lConfirm upgrade"
+    confirm-lore:
+      - "&7Upgrade: &f{current} &7→ &f{next}"
+      - "&7Cost: &a{cost}"
+      - ""
+      - "&eClick to confirm."
+    info-name: "&b{current} &7→ &a{next}"
+    info-lore:
+      - "&7Current type: &f{current}"
+      - "&7New type: &f{next}"
+      - ""
+      - "&7Current area: &f{current_size_x}x{current_size_z}"
+      - "&7New area: &a{next_size_x}x{next_size_z}"
+      - "&7Height: &b{next_height}"
+      - ""
+      - "&7Upgrade cost: &a{cost}"
+      - ""
+      - "&8The new area must be free."
+    cancel-name: "&c&lCancel"
+    cancel-lore:
+      - "&7No changes will be applied."
+      - ""
+      - "&eClick to go back."
+
+
+  # -----------------------------------------------------------------------------------------------
+  # Management sections menu
+  # -----------------------------------------------------------------------------------------------
+  management:
+    title: "&8Management menu"
+    members-name: "&bMembers"
+    members-lore:
+      - "&7View and manage members"
+      - "&7and co-owners."
+      - ""
+      - "&eClick to open."
+    flags-name: "&6Rules"
+    flags-lore:
+      - "&7Manage this protection's"
+      - "&7internal rules."
+      - ""
+      - "&eClick to open."
+    environment-name: "&2Environment"
+    environment-lore:
+      - "&7Manage this protection's"
+      - "&7environment rules."
+      - ""
+      - "&eClick to open."
+    coowner-settings-name: "&eCo-owner permissions"
+    coowner-settings-lore:
+      - "&7Define what co-owners"
+      - "&7are allowed to do."
+      - ""
+      - "&eClick to open."
+    blocked-name: "&cBlocked players"
+    blocked-lore:
+      - "&7View and manage blocked"
+      - "&7players in this protection."
+      - ""
+      - "&eClick to open."
+    upgrade-name: "&aUpgrade protection"
+    upgrade-lore:
+      - "&7Expand the size of this protection"
+      - "&7using the configured next stone."
+      - ""
+      - "&eClick to preview the upgrade."
+    upgrade-unavailable-name: "&7Upgrade unavailable"
+    upgrade-unavailable-lore:
+      - "&7This protection cannot"
+      - "&7be upgraded right now."
+      - ""
+      - "&fReason: &c{reason}"
+    back-name: "&eBack"
+    back-lore:
+      - "&7Return to the protection."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  # -----------------------------------------------------------------------------------------------
+  # Member and co-owner management
+  # -----------------------------------------------------------------------------------------------
+  members:
+    title: "&8Members menu"
+    instructions-name: "&eInstructions"
+    instructions-lore:
+      - "&7Add players using commands."
+      - ""
+      - "&f/lep member add <player>"
+      - "&f/lep coowner add <player>"
+      - ""
+      - "&7Manage from this GUI:"
+      - "&fLeft click: &7Change rank"
+      - "&fRight click: &7Remove"
+    player-name: "&f{player}"
+    player-lore:
+      - "&7Role: {role}"
+      - ""
+      - "&fLeft click: &7Change rank"
+      - "&fRight click: &7Remove"
+    role-member: "&bMember"
+    role-coowner: "&eCo-owner"
+    empty-slot-name: "&7Empty slot"
+    empty-slot-lore:
+      - "&8No player assigned."
+    previous-page-name: "&ePrevious page"
+    previous-page-lore:
+      - "&7Return to page {page}."
+    next-page-name: "&eNext page"
+    next-page-lore:
+      - "&7Go to page {page}."
+    back-name: "&eBack"
+    back-lore:
+      - "&7Returns to management."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  member-remove-confirm:
+    title: "&8Confirm removal"
+    confirm-name: "&aConfirm"
+    confirm-lore:
+      - "&7Remove &f{player}&7."
+      - ""
+      - "&aClick to confirm."
+    cancel-name: "&cCancel"
+    cancel-lore:
+      - "&7Do not remove &f{player}&7."
+      - ""
+      - "&cClick to cancel."
+    target-name: "&f{player}"
+    target-lore:
+      - "&7Current role: {role}"
+      - ""
+      - "&7This action will remove"
+      - "&7the player from the protection."
+
+  # -----------------------------------------------------------------------------------------------
+  # Blocked player management
+  # -----------------------------------------------------------------------------------------------
+  blocked:
+    title: "&8Blocked players menu"
+    instructions-name: "&eInstructions"
+    instructions-lore:
+      - "&7Block players using commands."
+      - ""
+      - "&f/lep block add <player>"
+      - "&f/lep block remove <player>"
+      - ""
+      - "&7Manage from this GUI:"
+      - "&fRight click: &7Unblock"
+    player-name: "&f{player}"
+    player-lore:
+      - "&7Status: &cBlocked"
+      - ""
+      - "&fRight click: &7Unblock"
+    empty-slot-name: "&7Empty slot"
+    empty-slot-lore:
+      - "&8No blocked player."
+    previous-page-name: "&ePrevious page"
+    previous-page-lore:
+      - "&7Return to page {page}."
+    next-page-name: "&eNext page"
+    next-page-lore:
+      - "&7Go to page {page}."
+    back-name: "&eBack"
+    back-lore:
+      - "&7Returns to management."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  blocked-remove-confirm:
+    title: "&8Confirm unblock"
+    confirm-name: "&aConfirm"
+    confirm-lore:
+      - "&7Unblock &f{player}&7."
+      - ""
+      - "&aClick to confirm."
+    cancel-name: "&cCancel"
+    cancel-lore:
+      - "&7Keep &f{player} &7blocked."
+      - ""
+      - "&cClick to cancel."
+    target-name: "&f{player}"
+    target-lore:
+      - "&7Current status: &cBlocked"
+      - ""
+      - "&7This action will remove"
+      - "&7the player from blocked list."
+
+  # -----------------------------------------------------------------------------------------------
+  # Co-owner administrative permissions
+  # -----------------------------------------------------------------------------------------------
+  coowner-settings:
+    title: "&8Co-owner permissions"
+    info-name: "&eInformation"
+    info-lore:
+      - "&7Define which administrative"
+      - "&7actions co-owners can perform."
+    edit-flags-name: "&6Edit rules"
+    edit-flags-lore:
+      - "&7Allows co-owners to change"
+      - "&7this protection's rules."
+      - ""
+      - "&7State: {state}"
+      - "&eClick to toggle."
+    manage-members-name: "&bManage members"
+    manage-members-lore:
+      - "&7Allows co-owners to add"
+      - "&7or remove normal members."
+      - ""
+      - "&7State: {state}"
+      - "&eClick to toggle."
+    back-name: "&eBack"
+    back-lore:
+      - "&7Returns to management."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  # -----------------------------------------------------------------------------------------------
+  # Per-protection internal rules
+  # -----------------------------------------------------------------------------------------------
+  rules-role:
+    title: "&8Rules menu"
+    visitor-name: "&eVisitors"
+    visitor-lore:
+      - "&7Configure permissions for"
+      - "&7players without access."
+      - ""
+      - "&eClick to open."
+    member-name: "&bMembers"
+    member-lore:
+      - "&7Configure permissions for"
+      - "&7protection members."
+      - ""
+      - "&eClick to open."
+    coowner-name: "&6Co-owners"
+    coowner-lore:
+      - "&7Configure permissions for"
+      - "&7protection co-owners."
+      - ""
+      - "&eClick to open."
+    blocked-name: "&cBlocked"
+    blocked-lore:
+      - "&7Configure restrictions for"
+      - "&7blocked players."
+      - ""
+      - "&eClick to open."
+    back-name: "&eBack"
+    back-lore:
+      - "&7Returns to management."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  rules-action:
+    title: "&8Rules menu"
+    action-name: "&f{action}"
+    action-lore:
+      - "&7{description}"
+      - ""
+      - "&7Current state: {effective_state}"
+      - ""
+      - "&8Default: {global_state}"
+      - ""
+      - "&fClick: &7Change state"
+      - "&8Default → Allow → Deny"
+    empty-slot-name: "&7Empty slot"
+    empty-slot-lore:
+      - "&8No rule."
+    reset-name: "&cReset rules"
+    reset-lore:
+      - "&7Removes all custom rules"
+      - "&7for &f{role}&7."
+      - ""
+      - "&eClick to continue."
+    reset-empty-lore:
+      - "&7This role does not have"
+      - "&7custom rules."
+      - ""
+      - "&8Nothing to reset."
+    back-name: "&eBack"
+    back-lore:
+      - "&7Returns to roles."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  rules-reset-confirm:
+    title: "&8Reset rules"
+    confirm-name: "&aConfirm"
+    confirm-lore:
+      - "&7Reset rules for &f{role}&7."
+      - ""
+      - "&aClick to confirm."
+    cancel-name: "&cCancel"
+    cancel-lore:
+      - "&7Keep the current rules"
+      - "&7for &f{role}&7."
+      - ""
+      - "&cClick to cancel."
+    target-name: "&f{role}"
+    target-lore:
+      - "&7All custom rules for this"
+      - "&7role will be removed."
+      - ""
+      - "&7It will use the default"
+      - "&7configuration values again."
+
+  # -----------------------------------------------------------------------------------------------
+  # Per-protection environment policies
+  # -----------------------------------------------------------------------------------------------
+  environment:
+    title: "&8Environment"
+    item-name: "{flag}"
+    item-lore:
+      - "&7{description}"
+      - ""
+      - "&7Current state: {effective_state}"
+      - ""
+      - "&8Default: {global_state}"
+      - ""
+      - "&fClick: &7Change state"
+      - "&8Default → Enabled → Disabled"
+    states:
+      ALLOW: "&aEnabled"
+      DENY: "&cDisabled"
+      DEFAULT: "&eDefault"
+    back-name: "&eBack"
+    back-lore:
+      - "&7Returns to management."
+    close-name: "&cClose"
+    close-lore:
+      - "&7Closes this menu."
+
+  # -----------------------------------------------------------------------------------------------
+  # Legacy WorldGuard flag GUIs. Kept for compatibility.
+  # -----------------------------------------------------------------------------------------------
+  flags-menu:
+    title: "&8Legacy flags"
+    info-name: "&bLegacy profiles"
+    info-lore:
+      - "&7Select which flag group"
+      - "&7you want to manage."
+    profile-lore:
+      - "&7{description}"
+      - ""
+      - "&eClick to open this profile."
+
+  flags-profile:
+    title: "&8{profile}"
+    item-lore:
+      - "&7State: {state_color}{state}"
+      - "&7Applies to: &e{group}"
+      - ""
+      - "&7Description:"
+      - "&f{description}"
+      - ""
+      - "&eClick to change."
+      - "&8Allowed → Blocked → Default"
+
+  directory:
+    title: "&8Public protections &7| &fPage {page}"
+    entry-name: "&f{title}"
+    entry-lore:
+      - "&7Owner: &f{owner}"
+      - "&7Category: &f{category}"
+      - "&7Visibility: {visibility}"
+      - "&7Visits: &f{visits}"
+      - "&7Favorite: {favorite}"
+      - ""
+      - "&f{description}"
+      - ""
+      - "&eLeft click: &7view information"
+      - "&eRight click: &7toggle favorite"
+      - "&8ID: {id}"
+    empty-name: "&7No results"
+    empty-lore:
+      - "&7No matching protections were found."
+    search-name: "&eSearch"
+    search-lore:
+      - "&7Current search: &f{query}"
+      - "&eClick to enter a search."
+    category-name: "&aCategory"
+    category-lore:
+      - "&7Current: &f{category}"
+      - "&eClick to change."
+    sort-name: "&bSort"
+    sort-lore:
+      - "&7Current: &f{sort}"
+      - "&eClick to change."
+    favorites-name: "&eFavorites"
+    favorites-lore:
+      - "&7View: &f{state}"
+      - "&eClick to toggle."
+    my-protections-name: "&aMy protections"
+    my-protections-lore:
+      - "&7Return to your protections."
+
+  public-settings:
+    title: "&8Public profile &7| &f{name}"
+    title-name: "&eTitle"
+    title-lore:
+      - "&7Current: &f{value}"
+      - "&7Maximum: &f{max} characters"
+      - "&eClick to edit in chat."
+    icon-name: "&aIcon"
+    icon-lore:
+      - "&7Material: &f{value}"
+      - "&eClick to choose."
+    description-name: "&eDescription"
+    description-lore:
+      - "&7Current: &f{value}"
+      - "&7Maximum: &f{max} characters"
+      - "&eClick to edit in chat."
+    visibility-name: "&bVisibility"
+    visibility-lore:
+      - "&7Current: {value}"
+      - ""
+      - "&eClick to change."
+      - "&8Private → Public open → Public closed"
+    category-name: "&aCategory"
+    category-lore:
+      - "&7Current: &f{value}"
+      - "&eClick to change."
+    welcome-name: "&dWelcome message"
+    welcome-lore:
+      - "&7Current: &f{value}"
+      - "&7Maximum: &f{max} characters"
+      - "&eClick to edit in chat."
+    visit-point-name: "&bVisit point"
+    visit-point-lore:
+      - "&7Current: &f{value}"
+      - "&eLeft click: &7use your position"
+      - "&eRight click: &7reset"
+    hologram-name: "&6Hologram"
+    hologram-lore:
+      - "&7Current state: {value}"
+      - "&7Default state: {default}"
+      - ""
+      - "&eClick to change."
+    stats-name: "&bStatistics"
+    stats-lore:
+      - "&7Visits: &f{visits}"
+    featured-name: "&6Featured (admin)"
+    featured-lore:
+      - "&7State: {value}"
+      - "&eClick to change."
+    hidden-name: "&cHidden (admin)"
+    hidden-lore:
+      - "&7State: {value}"
+      - "&7Hides the entry without changing ownership."
+      - "&eClick to change."
+
+  public-icon:
+    title: "&8Select an icon"
+    item-name: " "
+    item-lore:
+      - "&7State: {state}"
+      - "&eClick to select."
+
+directory:
+  all: "All"
+  none: "None"
+  no-description: "No description"
+  visibility:
+    PRIVATE: "&7Private"
+    PUBLIC_OPEN: "&aPublic open"
+    PUBLIC_CLOSED: "&ePublic closed"
+  hologram-state:
+    ENABLED: "&aEnabled"
+    DISABLED: "&cDisabled"
+    DEFAULT: "&eDefault"
+  sort:
+    FEATURED: "Featured"
+    POPULAR: "Most visited"
+    RECENT: "Newest"
+    ALPHABETICAL: "Alphabetical"
+  favorite:
+    "yes": "&aYes"
+    "no": "&7No"
+    only: "Favorites only"
+    all: "All"
+  boolean:
+    enabled: "&aEnabled"
+    disabled: "&cDisabled"
+  visit-point:
+    fallback: "Stone/safe fallback"
+    custom: "Custom point"
+  icon:
+    selected: "&aSelected"
+    available: "&7Available"
+  input-field:
+    TITLE: "title"
+    DESCRIPTION: "description"
+    WELCOME: "welcome message"
+    SEARCH: "search"
+
+# ==================================================================================================
+# State, role, action and flag translations
+# ==================================================================================================
+flag-states:
+  ALLOW: "Allowed"
+  DENY: "Blocked"
+  DEFAULT: "Default"
+
+rule-states:
+  ALLOW: "&aAllowed"
+  DENY: "&cDenied"
+  DEFAULT: "&eDefault"
+
+rule-roles:
+  ADMIN: "Administrator"
+  OWNER: "Owner"
+  CO_OWNER: "Co-owner"
+  MEMBER: "Member"
+  VISITOR: "Visitor"
+  BLOCKED: "Blocked"
+
+environment-flags:
+  hostile-spawning:
+    name: "&2Hostile spawning"
+    description: "Allows or blocks only vanilla hostile entities."
+  tnt-explosions:
+    name: "&cTNT explosions"
+    description: "Controls primed TNT and TNT minecarts."
+  creeper-explosions:
+    name: "&2Creeper explosions"
+    description: "Controls the environmental effects of creepers."
+  other-explosions:
+    name: "&dOther explosions"
+    description: "Controls beds, anchors, crystals, fireballs, and withers."
+  fire-spread:
+    name: "&6Fire spread"
+    description: "Controls spreading, environmental ignition, and burning."
+
+region-groups:
+  ALL: "Everyone"
+  MEMBERS: "Members"
+  OWNERS: "Owners"
+  NON_MEMBERS: "Visitors"
+  NON_OWNERS: "Non-owners"
+
+flag-profiles:
+  visitors:
+    name: "&eVisitors"
+    description: "Rules applied to players who are not members of the protection."
+  members:
+    name: "&aMembers"
+    description: "Rules applied to players added as members of the protection."
+  combat:
+    name: "&cCombat"
+    description: "Rules related to PvP and combat inside the protection."
+  explosions:
+    name: "&4Explosions"
+    description: "Rules related to TNT, creepers, and other explosions."
+  environment:
+    name: "&2Environment"
+    description: "Rules related to mobs, animals, and world behavior."
+
+flag-display:
+  build:
+    name: "&eGeneral build"
+    description: "Controls whether building is allowed inside the protection."
+  block-break:
+    name: "&eBlock breaking"
+    description: "Allows or blocks breaking blocks inside the region."
+  block-place:
+    name: "&eBlock placing"
+    description: "Allows or blocks placing blocks inside the region."
+  interact:
+    name: "&eInteraction"
+    description: "Controls general interaction with blocks and objects."
+  use:
+    name: "&eBlock use"
+    description: "Controls doors, buttons, levers, and other usable blocks."
+  chest-access:
+    name: "&eChest access"
+    description: "Allows or blocks opening chests and containers."
+  pvp:
+    name: "&cPvP"
+    description: "Allows or blocks player versus player combat."
+  tnt:
+    name: "&cTNT"
+    description: "Allows or blocks TNT explosions."
+  creeper-explosion:
+    name: "&2Creeper explosions"
+    description: "Allows or blocks explosions caused by creepers."
+  other-explosion:
+    name: "&cOther explosions"
+    description: "Allows or blocks explosions not covered by other flags."
+  mob-spawning:
+    name: "&aMob spawning"
+    description: "Allows or blocks natural creature spawning."
+  entry:
+    name: "&bEntry"
+    description: "Allows or blocks players from entering the region."
+  enderpearl:
+    name: "&5Ender Pearl"
+    description: "Allows or blocks ender pearl usage inside the region."
+  item-drop:
+    name: "&eItem drop"
+    description: "Allows or blocks dropping items inside the protection."
+  item-pickup:
+    name: "&eItem pickup"
+    description: "Allows or blocks picking up items inside the protection."
+  damage-animals:
+    name: "&aDamage animals"
+    description: "Allows or blocks damaging animals inside the region."
+  ride:
+    name: "&6Ride entities"
+    description: "Allows or blocks riding entities such as horses or vehicles."
+  sleep:
+    name: "&9Sleep"
+    description: "Allows or blocks sleeping in beds inside the region."
+  vehicle-place:
+    name: "&6Place vehicles"
+    description: "Allows or blocks placing boats, minecarts, and other vehicles."
+  vehicle-destroy:
+    name: "&6Destroy vehicles"
+    description: "Allows or blocks destroying vehicles inside the protection."
+
+rule-actions:
+  block-break:
+    name: "&eBreak blocks"
+    description: "Allows or blocks breaking blocks inside the protection."
+  block-place:
+    name: "&ePlace blocks"
+    description: "Allows or blocks placing blocks inside the protection."
+  chest-open:
+    name: "&eOpen chests"
+    description: "Allows or blocks opening chests."
+  barrel-open:
+    name: "&eOpen barrels"
+    description: "Allows or blocks opening barrels."
+  shulker-open:
+    name: "&eOpen shulkers"
+    description: "Allows or blocks opening shulker boxes."
+  container-open:
+    name: "&eUse other containers"
+    description: "Allows or blocks using dispensers, droppers, hoppers, furnaces, and other functional containers."
+  door-use:
+    name: "&eUse doors"
+    description: "Allows or blocks opening doors."
+  trapdoor-use:
+    name: "&eUse trapdoors"
+    description: "Allows or blocks opening trapdoors."
+  fence-gate-use:
+    name: "&eUse fence gates"
+    description: "Allows or blocks opening fence gates."
+  button-use:
+    name: "&eUse buttons"
+    description: "Allows or blocks pressing buttons."
+  lever-use:
+    name: "&eUse levers"
+    description: "Allows or blocks using levers."
+  pressure-plate-use:
+    name: "&ePhysical triggers"
+    description: "Allows or blocks pressure plates, tripwire, and redstone ore."
+  item-drop:
+    name: "&eDrop items"
+    description: "Allows or blocks dropping items."
+  item-pickup:
+    name: "&ePick up items"
+    description: "Allows or blocks picking up items."
+  entity-interact:
+    name: "&aInteract with entities"
+    description: "Allows or blocks interacting with villagers, animals, and other living entities."
+  animal-damage:
+    name: "&aDamage animals"
+    description: "Allows or blocks damaging animals."
+  entity-damage:
+    name: "&aDamage entities"
+    description: "Allows or blocks damaging villagers, golems, mobs, and other non-animal living entities."
+  pvp:
+    name: "&cPvP"
+    description: "Allows or blocks attacking players."
+  ender-pearl:
+    name: "&5Ender Pearl"
+    description: "Allows or blocks using ender pearls."

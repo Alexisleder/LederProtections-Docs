@@ -1,0 +1,159 @@
+# ============================================================
+# LederProtections - Piedras de protección / Protection stones
+# ============================================================
+#
+# ES: Este archivo define los tipos de piedras disponibles.
+# EN: This file defines the available protection stone types.
+#
+# ES: Cada sección corresponde al ID usado en comandos:
+# /lep give <jugador> <tipo> <cantidad>
+# EN: Each section corresponds to the ID used in commands:
+# /lep give <player> <type> <amount>
+#
+# ES: Los radios:
+# - radius-x: este/oeste
+# - radius-z: norte/sur
+# - radius-y: vertical, -1 = altura completa
+# EN: Radius values:
+# - radius-x: east/west
+# - radius-z: north/south
+# - radius-y: vertical, -1 = full height
+#
+# ES: Tamaño horizontal real = radius * 2 + 1
+# ============================================================
+
+stones:
+  "4":
+    display-name: "&f&lLeder&b&lProtections &8| &7Piedra &ax4"
+    material: "COAL_ORE"
+    radius-x: 4
+    radius-y: -1
+    radius-z: 4
+    permission: "lederprotections.stone.4"
+    max-protections: 5
+    economy:
+      price: 5000.0
+      shop-enabled: true
+    upgrade:
+      enabled: true
+      next: "8"
+    lore:
+      - "&8&m-----------------------------"
+      - "&7Protección pequeña para zonas iniciales."
+      - "&7Ideal para cofres, parcelas y casas pequeñas."
+      - ""
+      - "&fRadio: &a{radius_x} &7bloques"
+      - "&fÁrea: &a{size_x}x{size_z}"
+      - "&fPrecio: &a{price}"
+      - "&fMejora: &b{next_upgrade}"
+      - ""
+      - "&eColócala para crear una protección."
+      - "&8&m-----------------------------"
+
+  "8":
+    display-name: "&f&lLeder&b&lProtections &8| &7Piedra &bx8"
+    material: "COPPER_ORE"
+    radius-x: 8
+    radius-y: -1
+    radius-z: 8
+    permission: "lederprotections.stone.8"
+    max-protections: 4
+    economy:
+      price: 15000.0
+      shop-enabled: true
+    upgrade:
+      enabled: true
+      next: "16"
+    lore:
+      - "&8&m-----------------------------"
+      - "&7Protección básica para casas y almacenes."
+      - "&7Buena opción para terrenos iniciales."
+      - ""
+      - "&fRadio: &b{radius_x} &7bloques"
+      - "&fÁrea: &b{size_x}x{size_z}"
+      - "&fPrecio: &a{price}"
+      - "&fMejora: &b{next_upgrade}"
+      - ""
+      - "&eColócala para crear una protección."
+      - "&8&m-----------------------------"
+
+  "16":
+    display-name: "&f&lLeder&b&lProtections &8| &7Piedra &fx16"
+    material: "IRON_ORE"
+    radius-x: 16
+    radius-y: -1
+    radius-z: 16
+    permission: "lederprotections.stone.16"
+    max-protections: 3
+    economy:
+      price: 40000.0
+      shop-enabled: true
+    upgrade:
+      enabled: true
+      next: "32"
+    lore:
+      - "&8&m-----------------------------"
+      - "&7Protección mediana para bases y granjas."
+      - "&7Pensada para zonas personales importantes."
+      - ""
+      - "&fRadio: &f{radius_x} &7bloques"
+      - "&fÁrea: &f{size_x}x{size_z}"
+      - "&fPrecio: &a{price}"
+      - "&fMejora: &b{next_upgrade}"
+      - ""
+      - "&aIncluye gestión completa desde GUI."
+      - "&8&m-----------------------------"
+
+  "32":
+    display-name: "&f&lLeder&b&lProtections &8| &7Piedra &6x32"
+    material: "GOLD_ORE"
+    radius-x: 32
+    radius-y: -1
+    radius-z: 32
+    permission: "lederprotections.stone.32"
+    max-protections: 2
+    economy:
+      price: 90000.0
+      shop-enabled: true
+    upgrade:
+      enabled: true
+      next: "64"
+    lore:
+      - "&8&m-----------------------------"
+      - "&7Protección grande para bases avanzadas."
+      - "&7Ideal para zonas importantes del servidor."
+      - ""
+      - "&fRadio: &6{radius_x} &7bloques"
+      - "&fÁrea: &6{size_x}x{size_z}"
+      - "&fPrecio: &a{price}"
+      - "&fMejora: &b{next_upgrade}"
+      - ""
+      - "&eAdministra miembros y reglas desde GUI."
+      - "&8&m-----------------------------"
+
+  "64":
+    display-name: "&f&lLeder&b&lProtections &8| &7Piedra &ax64"
+    material: "EMERALD_ORE"
+    radius-x: 64
+    radius-y: -1
+    radius-z: 64
+    permission: "lederprotections.stone.64"
+    max-protections: 1
+    economy:
+      price: 200000.0
+      shop-enabled: true
+    upgrade:
+      enabled: false
+      next: ""
+    lore:
+      - "&8&m-----------------------------"
+      - "&7Protección superior para ciudades y clanes."
+      - "&7Pensada para bases grandes y proyectos premium."
+      - ""
+      - "&fRadio: &a{radius_x} &7bloques"
+      - "&fÁrea: &a{size_x}x{size_z}"
+      - "&fPrecio: &a{price}"
+      - "&fMejora: &b{next_upgrade}"
+      - ""
+      - "&aLa protección más amplia por defecto."
+      - "&8&m-----------------------------"
