@@ -6,7 +6,7 @@ A configurable protection-stone plugin for Minecraft servers. LederProtections u
 **Supported server families:** Spigot, Paper, Purpur, and compatible Bukkit forks
 **Recommended:** Paper (where a supported build is available)
 
-[Download on Modrinth](https://modrinth.com/plugin/lederprotections) · [Documentation Wiki](https://github.com/Alexisleder/LederProtections-Docs/wiki) · [Report a documentation issue](https://github.com/Alexisleder/LederProtections-Docs/issues)
+[Download on Modrinth](https://modrinth.com/plugin/lederprotections) · [Documentation Wiki](https://github.com/Alexisleder/LederProtections-Docs/wiki) · [Report a documentation issue](https://github.com/Alexisleder/LederProtections-Docs/issues) · [Join Discord Server](https://discord.gg/jKm6GEjgqP)
 
 ## Features
 
