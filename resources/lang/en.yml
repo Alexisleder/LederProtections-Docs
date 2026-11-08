@@ -7,6 +7,41 @@
 # Brand: use &fLeder&bProtections for visible plugin branding.
 # ==================================================================================================
 
+menus:
+  reload-rejected: "&cGUI theme rejected; previous layout retained. &7{error}"
+  stale-context: "&eThis protection changed while the menu was open. Please reopen it."
+inspection:
+  details: "&7Owner: &f{owner} &8| &7World: &f{world} &8| &7{coordinates}"
+  tab-wg: "&6[WorldGuard] "
+  tab-environment: "&2[Environment] "
+  wg-readonly: "&7WorldGuard is a read-only reference. Edit LP rules in the other tabs."
+  readonly: "&7You can inspect this panel, but cannot change its rules."
+  disabled-engine: "&eThis system is disabled; stored rules are neither enforced nor editable here."
+  chat-row: "&f{name} &8» {state} &8({source})"
+  state-allow: "&aAllow"
+  state-deny: "&cBlock"
+  state-default: "&eInherit"
+  previous: "&e[← Previous] "
+  next: " &e[Next →]"
+  refresh: "&b[Refresh]"
+  click-hint: "&7Click to execute this option."
+  stale: "&eThis rule changed since you opened the panel. Review its updated state."
+  updated: "&aRule saved."
+  usage: "&eUsage: /lep inspect [protection-id] [page] [wg|environment|role]"
+  unavailable: "&cProtection unavailable or you do not have permission to inspect it."
+  header: "&b{name} &7({id}) &8— &fInspection {page}/{pages}"
+  explanation: "&7LP rules are separate from /rg info. Passthrough ALLOW is intentional when enabled. Other plugins/overlapping regions may still deny an action."
+  engines: "&7LP rules: {rules} | Environment: {environment} | Configured passthrough: {passthrough}"
+  wg-header: "&6WG explicit flags &7[{region}] priority={priority}, parent={parent}"
+  wg-flag: "&8- &6{flag}: &f{value}"
+  wg-empty: "&7No flags explicitly set. Inherited/global WG flags are not listed."
+  wg-unavailable: "&eWG region/world unavailable."
+  environment-line: "&2Environment &f{flag}: &b{effective} &8[override={override}, {source}]"
+  rule-line: "&b{role} &7/ &f{action}: &e{effective} &8[override={override}, {source}]"
+  custom: "protection override"
+  inherited: "global default"
+  footer: "&7Page: /lep inspect {id} {page} | This is a read-only report. Disabled engines do not enforce stored overrides."
+
 messages:
   # -----------------------------------------------------------------------------------------------
   # General plugin messages
@@ -51,6 +86,9 @@ messages:
   # Command messages
   # -----------------------------------------------------------------------------------------------
   command:
+    home-usage: "&7/{label} home <name or ID> &8- &fTeleport to a protection."
+    home-not-found: "&cNo accessible protection matches that name or ID."
+    home-ambiguous: "&eSeveral protections have that name. Use an ID: &f{ids}"
     player-only: "&cPlayers only."
     no-permission: "&cNo permission."
     player-not-online: "&cPlayer is not online."
@@ -163,6 +201,10 @@ messages:
         worldguard-region-id-empty: "&8- &c{id}: WorldGuard region id is empty."
         worldguard-orphan-region: "&8- &cWorldGuard: region &e{region} &cin world &e{world} &clooks like a LederProtections region, but it is not present in protections.yml."
         worldguard-region-missing: "&8- &c{id}: WorldGuard region &e{region} &cdoes not exist."
+        worldguard-bounds-mismatch: "&8- &e{id}: WG shape/bounds differ from LP ({region})."
+        worldguard-owners-mismatch: "&8- &e{id}: WG owners differ from LP ({region})."
+        worldguard-members-mismatch: "&8- &e{id}: WG members differ from LP members/co-owners ({region})."
+        worldguard-passthrough-mismatch: "&8- &e{id}: WG passthrough differs from the configured LP mode ({region}). Review manually; check does not change it."
         owner-listed-as-coowner: "&8- &c{id}: owner is also listed as co-owner."
         owner-listed-as-member: "&8- &c{id}: owner is also listed as member."
         coowner-listed-as-member: "&8- &c{id}: &e{player} &cis listed as co-owner and member at the same time."
@@ -517,16 +559,20 @@ gui:
   # /p, /protecciones, /protections: player's protection list
   # -----------------------------------------------------------------------------------------------
   protection-list:
+    no-results-name: "&eYou have no protections yet"
+    no-results-lore: ["&7Place a protection stone to get started.", "&7You can get one from the shop in this menu."]
     title: "&8Protections menu"
     info-name: "&eMy protections"
     info-lore:
       - "&7Available protections: &f{count}"
+      - "&7Page: &f{page}/{pages}"
       - ""
       - "&fLeft click: &7Teleport"
       - "&fRight click: &7Manage"
     protection-name: "&f{name}"
     protection-lore:
       - "&7Role: {role}"
+      - "&7Owner: &f{owner}"
       - "&7World: &f{world}"
       - "&7Location: &f{x}, {y}, {z}"
       - "&7Size: &f{size_x} x {size_y} x {size_z}"
@@ -655,16 +701,17 @@ gui:
   # Specific protection main GUI
   # -----------------------------------------------------------------------------------------------
   main:
+    public-title: "&8Public profile"
+    public-back-lore: ["&7Return to the protection menu."]
+    public-menu-name: "&bPublic profile"
+    public-menu-lore: ["&7Visibility, description, visits", "&7and public options for this protection."]
     title: "&8Protection menu"
-    info-name: "&eInformation"
+    info-name: "&f{name}"
     info-lore:
-      - "&7Name: &f{name}"
       - "&7Owner: &f{owner}"
-      - "&7Type: &f{type}"
       - "&7World: &f{world}"
-      - "&7Created: &f{created_at}"
-      - ""
-      - "&8ID: {id}"
+      - "&7Size: &f{size}"
+      - "&7Location: &f{coordinates}"
     area-name: "&bProtected area"
     area-lore:
       - "&7Stone: &f{x}, {y}, {z}"
@@ -714,7 +761,7 @@ gui:
       - "&eClick to preview the upgrade."
     back-name: "&eBack"
     back-lore:
-      - "&7Return to your protections."
+      - "&7Return to the list you came from."
     close-name: "&cClose"
     close-lore:
       - "&7Closes this menu."
@@ -903,6 +950,7 @@ gui:
     title: "&8Confirm removal"
     confirm-name: "&aConfirm"
     confirm-lore:
+      - "&7Protection: &f{protection}"
       - "&7Remove &f{player}&7."
       - ""
       - "&aClick to confirm."
@@ -957,6 +1005,7 @@ gui:
     title: "&8Confirm unblock"
     confirm-name: "&aConfirm"
     confirm-lore:
+      - "&7Protection: &f{protection}"
       - "&7Unblock &f{player}&7."
       - ""
       - "&aClick to confirm."
@@ -1039,7 +1088,22 @@ gui:
       - "&7Closes this menu."
 
   rules-action:
+    page-name: "&bRules &7| &f{page}/{pages}"
+    page-lore: ["&7Page {page} of {pages}."]
+    previous-name: "&ePrevious page"
+    next-name: "&eNext page"
     title: "&8Rules menu"
+    category-name: "&b{category} &7{selected}"
+    category-lore: ["&7Click to view this category."]
+    icon-lore: ["&7{description}", "&7Use the button below to change the state."]
+    allowed-label: "&aAllowed ✓"
+    denied-label: "&cBlocked ✕"
+    allow-action: "Allow"
+    deny-action: "Block"
+    state-name: "{state_label} &7| &f{action}"
+    state-details-lore: ["&fNext click: &e{next_state}", "&8Reset removes this role's overrides."]
+    inherited: "Default configuration"
+    custom: "Customized for this protection"
     action-name: "&f{action}"
     action-lore:
       - "&7{description}"
@@ -1049,7 +1113,7 @@ gui:
       - "&8Default: {global_state}"
       - ""
       - "&fClick: &7Change state"
-      - "&8Default → Allow → Deny"
+      - "&8Allow ↔ Block; reset to inherit."
     empty-slot-name: "&7Empty slot"
     empty-slot-lore:
       - "&8No rule."
@@ -1075,6 +1139,7 @@ gui:
     title: "&8Reset rules"
     confirm-name: "&aConfirm"
     confirm-lore:
+      - "&7Protection: &f{protection}"
       - "&7Reset rules for &f{role}&7."
       - ""
       - "&aClick to confirm."
@@ -1180,7 +1245,7 @@ gui:
       - "&eClick to toggle."
     my-protections-name: "&aMy protections"
     my-protections-lore:
-      - "&7Return to your protections."
+      - "&7Return to the list you came from."
 
   public-settings:
     title: "&8Public profile &7| &f{name}"
@@ -1463,3 +1528,10 @@ rule-actions:
   ender-pearl:
     name: "&5Ender Pearl"
     description: "Allows or blocks using ender pearls."
+
+rule-categories:
+  BUILD: Building
+  STORAGE: Storage
+  MECHANISMS: Mechanisms
+  ENTITIES: Entities and combat
+  ITEMS: Items and transport

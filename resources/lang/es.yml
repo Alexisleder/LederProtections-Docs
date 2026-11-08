@@ -7,6 +7,41 @@
 # Marca: en textos visibles usa &fLeder&bProtections cuando se muestre el nombre del plugin.
 # ==================================================================================================
 
+menus:
+  reload-rejected: "&cTema GUI rechazado; se conserva el diseño anterior. &7{error}"
+  stale-context: "&eLa protección cambió mientras el menú estaba abierto. Vuelve a abrirlo."
+inspection:
+  details: "&7Dueño: &f{owner} &8| &7Mundo: &f{world} &8| &7{coordinates}"
+  tab-wg: "&6[WorldGuard] "
+  tab-environment: "&2[Entorno] "
+  wg-readonly: "&7WorldGuard: referencia de solo lectura. Edita las reglas de LP en las otras pestañas."
+  readonly: "&7Puedes consultar este panel, pero no modificar sus reglas."
+  disabled-engine: "&eEste sistema está desactivado; sus reglas guardadas no se aplican ni se editan aquí."
+  chat-row: "&f{name} &8» {state} &8({source})"
+  state-allow: "&aPermitir"
+  state-deny: "&cBloquear"
+  state-default: "&eHeredar"
+  previous: "&e[← Anterior] "
+  next: " &e[Siguiente →]"
+  refresh: "&b[Actualizar]"
+  click-hint: "&7Haz clic para ejecutar esta opción."
+  stale: "&eEsta regla cambió desde que abriste el panel. Revisa su estado actualizado."
+  updated: "&aRegla guardada."
+  usage: "&eUso: /lep inspect [id-protección] [página] [wg|environment|rol]"
+  unavailable: "&cProtección no disponible o no tienes permiso para consultarla."
+  header: "&b{name} &7({id}) &8— &fConsulta {page}/{pages}"
+  explanation: "&7Las reglas de LP son distintas de /rg info. Passthrough ALLOW es intencional cuando está activado. Otros plugins/regiones solapadas aún pueden denegar una acción."
+  engines: "&7Reglas LP: {rules} | Entorno: {environment} | Passthrough configurado: {passthrough}"
+  wg-header: "&6Flags explícitas WG &7[{region}] prioridad={priority}, padre={parent}"
+  wg-flag: "&8- &6{flag}: &f{value}"
+  wg-empty: "&7No hay flags explícitas. No se listan flags heredadas/globales de WG."
+  wg-unavailable: "&eRegión WG/mundo no disponible."
+  environment-line: "&2Entorno &f{flag}: &b{effective} &8[personalizada={override}, {source}]"
+  rule-line: "&b{role} &7/ &f{action}: &e{effective} &8[personalizada={override}, {source}]"
+  custom: "personalizada"
+  inherited: "valor global"
+  footer: "&7Página: /lep inspect {id} {page} | Consulta de solo lectura. Los motores desactivados no aplican sus reglas guardadas."
+
 messages:
   # -----------------------------------------------------------------------------------------------
   # Mensajes generales del plugin
@@ -51,6 +86,9 @@ messages:
   # Mensajes de comandos
   # -----------------------------------------------------------------------------------------------
   command:
+    home-usage: "&7/{label} home <nombre o ID> &8- &fIr a una protección."
+    home-not-found: "&cNo tienes acceso a una protección con ese nombre o ID."
+    home-ambiguous: "&eHay varias protecciones con ese nombre. Usa su ID: &f{ids}"
     player-only: "&cSolo jugadores."
     no-permission: "&cSin permiso."
     player-not-online: "&cJugador no conectado."
@@ -163,6 +201,10 @@ messages:
         worldguard-region-id-empty: "&8- &c{id}: el id de región WorldGuard está vacío."
         worldguard-orphan-region: "&8- &cWorldGuard: la región &e{region} &cen el mundo &e{world} &cparece de LederProtections, pero no existe en protections.yml."
         worldguard-region-missing: "&8- &c{id}: la región WorldGuard &e{region} &cno existe."
+        worldguard-bounds-mismatch: "&8- &e{id}: la forma/límites de WG no coinciden con LP ({region})."
+        worldguard-owners-mismatch: "&8- &e{id}: los dueños de WG no coinciden con LP ({region})."
+        worldguard-members-mismatch: "&8- &e{id}: los miembros de WG no coinciden con miembros/codueños de LP ({region})."
+        worldguard-passthrough-mismatch: "&8- &e{id}: passthrough de WG difiere del modo configurado en LP ({region}). Revísalo manualmente; check no lo modifica."
         owner-listed-as-coowner: "&8- &c{id}: el dueño también aparece como codueño."
         owner-listed-as-member: "&8- &c{id}: el dueño también aparece como miembro."
         coowner-listed-as-member: "&8- &c{id}: &e{player} &caparece como codueño y miembro al mismo tiempo."
@@ -520,16 +562,20 @@ gui:
   # /p, /protecciones, /protections: lista de protecciones del jugador
   # -----------------------------------------------------------------------------------------------
   protection-list:
+    no-results-name: "&eTodavía no tienes protecciones"
+    no-results-lore: ["&7Coloca una piedra de protección para empezar.", "&7Puedes conseguirla desde la tienda de este menú."]
     title: "&8Menú de protecciones"
     info-name: "&eMis protecciones"
     info-lore:
       - "&7Protecciones disponibles: &f{count}"
+      - "&7Página: &f{page}/{pages}"
       - ""
       - "&fClick izquierdo: &7Teletransportarte"
       - "&fClick derecho: &7Administrar"
     protection-name: "&f{name}"
     protection-lore:
       - "&7Rol: {role}"
+      - "&7Dueño: &f{owner}"
       - "&7Mundo: &f{world}"
       - "&7Ubicación: &f{x}, {y}, {z}"
       - "&7Tamaño: &f{size_x} x {size_y} x {size_z}"
@@ -658,16 +704,17 @@ gui:
   # GUI principal de una protección específica
   # -----------------------------------------------------------------------------------------------
   main:
+    public-title: "&8Perfil público"
+    public-back-lore: ["&7Volver al menú de la protección."]
+    public-menu-name: "&bPerfil público"
+    public-menu-lore: ["&7Visibilidad, descripción, visitas", "&7y opciones públicas de esta protección."]
     title: "&8Menú de protección"
-    info-name: "&eInformación"
+    info-name: "&f{name}"
     info-lore:
-      - "&7Nombre: &f{name}"
       - "&7Dueño: &f{owner}"
-      - "&7Tipo: &f{type}"
       - "&7Mundo: &f{world}"
-      - "&7Creada: &f{created_at}"
-      - ""
-      - "&8ID: {id}"
+      - "&7Tamaño: &f{size}"
+      - "&7Ubicación: &f{coordinates}"
     area-name: "&bÁrea protegida"
     area-lore:
       - "&7Piedra: &f{x}, {y}, {z}"
@@ -717,7 +764,7 @@ gui:
       - "&eClick para ver la mejora."
     back-name: "&eVolver"
     back-lore:
-      - "&7Regresa a tus protecciones."
+      - "&7Regresa a la lista desde donde entraste."
     close-name: "&cCerrar"
     close-lore:
       - "&7Cierra este menú."
@@ -904,6 +951,7 @@ gui:
     title: "&8Confirmar eliminación"
     confirm-name: "&aConfirmar"
     confirm-lore:
+      - "&7Protección: &f{protection}"
       - "&7Eliminar a &f{player}&7."
       - ""
       - "&aClick para confirmar."
@@ -958,6 +1006,7 @@ gui:
     title: "&8Confirmar desbloqueo"
     confirm-name: "&aConfirmar"
     confirm-lore:
+      - "&7Protección: &f{protection}"
       - "&7Desbloquear a &f{player}&7."
       - ""
       - "&aClick para confirmar."
@@ -1040,7 +1089,22 @@ gui:
       - "&7Cierra este menú."
 
   rules-action:
+    page-name: "&bReglas &7| &f{page}/{pages}"
+    page-lore: ["&7Página {page} de {pages}."]
+    previous-name: "&ePágina anterior"
+    next-name: "&ePágina siguiente"
     title: "&8Menú de reglas"
+    category-name: "&b{category} &7{selected}"
+    category-lore: ["&7Click para ver esta categoría."]
+    icon-lore: ["&7{description}", "&7Usa el botón de abajo para cambiar el estado."]
+    allowed-label: "&aPermitido ✓"
+    denied-label: "&cBloqueado ✕"
+    allow-action: "Permitir"
+    deny-action: "Bloquear"
+    state-name: "{state_label} &7| &f{action}"
+    state-details-lore: ["&fSiguiente clic: &e{next_state}", "&8Restablecer elimina los cambios de este rol."]
+    inherited: "Configuración predeterminada"
+    custom: "Personalizado en esta protección"
     action-name: "&f{action}"
     action-lore:
       - "&7{description}"
@@ -1050,7 +1114,7 @@ gui:
       - "&8Por defecto: {global_state}"
       - ""
       - "&fClick: &7Cambiar estado"
-      - "&8Por defecto → Permitir → Denegar"
+      - "&8Permitir ↔ Bloquear; restablecer para heredar."
     empty-slot-name: "&7Espacio vacío"
     empty-slot-lore:
       - "&8Sin regla."
@@ -1076,6 +1140,7 @@ gui:
     title: "&8Restablecer reglas"
     confirm-name: "&aConfirmar"
     confirm-lore:
+      - "&7Protección: &f{protection}"
       - "&7Restablecer reglas de &f{role}&7."
       - ""
       - "&aClick para confirmar."
@@ -1181,7 +1246,7 @@ gui:
       - "&eClick para alternar."
     my-protections-name: "&aMis protecciones"
     my-protections-lore:
-      - "&7Regresa a tus protecciones."
+      - "&7Regresa a la lista desde donde entraste."
 
   public-settings:
     title: "&8Perfil público &7| &f{name}"
@@ -1464,3 +1529,10 @@ rule-actions:
   ender-pearl:
     name: "&5Ender Pearl"
     description: "Permite o bloquea usar perlas de ender."
+
+rule-categories:
+  BUILD: Construcción
+  STORAGE: Almacenamiento
+  MECHANISMS: Mecanismos
+  ENTITIES: Entidades y combate
+  ITEMS: Objetos y transporte

@@ -1,0 +1,427 @@
+# GUI theme for server administrators. Zero-based slots; see docs/GUI_THEMES.md.
+# Missing fields inherit the bundled layout. Invalid reloads keep the previous theme.
+# HeadDatabase IDs must be quoted. Icons may use material, texture, base64, hdb,
+# custom-model-data, item-model, name and lore. Never put executable commands here.
+schema-version: 1
+gui-style:
+  default-heads: false
+  clean-background: false
+  border-material: CYAN_STAINED_GLASS_PANE
+  fill-material: GRAY_STAINED_GLASS_PANE
+  state-heads: false
+  # Minecraft Heads: green-checkmark 21774 / red-x 56785. Empty = vanilla dye.
+  allowed-head: "4312ca4632def5ffaf2eb0d9d7cc7b55a50c4e3920d90372aab140781f5dfbc4"
+  denied-head: "27548362a24c0fa8453e4d93e68c5969ddbde57bf6666c0319c1ed1e84d89065"
+
+# Enable only when your server sends a resource pack: use fallback-title until loaded.
+pack-aware: false
+# Optional category overrides; existing config.yml head-texture is the fallback.
+category-icons: {}
+menus:
+  admin-protection-list:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      info:
+        slots: [4]
+      previous-page:
+        slots: [45]
+      sort:
+        slots: [47]
+      player-list:
+        slots: [48]
+      close:
+        slots: [49]
+      clear-filter:
+        slots: [50]
+      next-page:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  blocked-management:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      instructions:
+        slots: [4]
+      previous-page:
+        slots: [45]
+      back:
+        slots: [49]
+      close:
+        slots: [50]
+      next-page:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  blocked-remove-confirm:
+    rows: 3
+    title: ""
+    fallback-title: ""
+    buttons:
+      target:
+        slots: [13]
+      confirm:
+        slots: [11]
+      cancel:
+        slots: [15]
+  coowner-settings:
+    rows: 4
+    title: ""
+    fallback-title: ""
+    buttons:
+      edit-flags:
+        slots: [11]
+      manage-members:
+        slots: [15]
+      back:
+        slots: [31]
+      close:
+        slots: [35]
+  public-directory:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      search:
+        slots: [45]
+      category:
+        slots: [46]
+      sort:
+        slots: [47]
+      favorites:
+        slots: [48]
+      my-protections:
+        slots: [49]
+      previous-page:
+        slots: [50]
+      next-page:
+        slots: [51]
+      close:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  protection-environment:
+    rows: 3
+    title: ""
+    fallback-title: ""
+    buttons:
+      back:
+        slots: [18]
+      close:
+        slots: [26]
+      hostile-spawning:
+        slots: [10]
+      tnt-explosions:
+        slots: [11]
+      creeper-explosions:
+        slots: [12]
+      other-explosions:
+        slots: [14]
+      fire-spread:
+        slots: [15]
+  public-icon:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      back:
+        slots: [49]
+      close:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  protection-list:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      info:
+        slots: [4]
+      previous-page:
+        slots: [45]
+      directory:
+        slots: [47]
+      shop:
+        slots: [48]
+      close:
+        slots: [49]
+      notifications:
+        slots: [50]
+      next-page:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  main:
+    rows: 5
+    title: ""
+    fallback-title: ""
+    buttons:
+      info:
+        slots: [13]
+      area:
+        slots: [20]
+      management:
+        slots: [22]
+      public-settings:
+        slots: [24]
+      back:
+        slots: [38]
+      close:
+        slots: [42]
+  main-public:
+    rows: 5
+    title: ""
+    fallback-title: ""
+    buttons:
+      info:
+        slots: [13]
+      public-status:
+        slots: [14]
+      description:
+        slots: [16]
+      visit:
+        slots: [20]
+      favorite:
+        slots: [22]
+      public-settings:
+        slots: [24]
+      my-protections:
+        slots: [37]
+      directory:
+        slots: [39]
+      back:
+        slots: [38]
+      close:
+        slots: [42]
+  protection-management:
+    rows: 4
+    title: ""
+    fallback-title: ""
+    buttons:
+      members:
+        slots: [10]
+      coowner-settings:
+        slots: [14]
+      blocked:
+        slots: [16]
+      environment:
+        slots: [4]
+      upgrade:
+        slots: [22]
+      back:
+        slots: [31]
+      close:
+        slots: [35]
+      rules:
+        slots: [12]
+  member-remove-confirm:
+    rows: 3
+    title: ""
+    fallback-title: ""
+    buttons:
+      target:
+        slots: [13]
+      confirm:
+        slots: [11]
+      cancel:
+        slots: [15]
+  members-management:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      instructions:
+        slots: [4]
+      previous-page:
+        slots: [45]
+      back:
+        slots: [49]
+      close:
+        slots: [50]
+      next-page:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  public-settings:
+    rows: 5
+    title: ""
+    fallback-title: ""
+    buttons:
+      title:
+        slots: [10]
+      icon:
+        slots: [12]
+      description:
+        slots: [14]
+      visibility:
+        slots: [16]
+      category:
+        slots: [20]
+      welcome:
+        slots: [22]
+      visit-point:
+        slots: [24]
+      hologram:
+        slots: [30]
+      stats:
+        slots: [32]
+      featured:
+        slots: [28]
+      hidden:
+        slots: [34]
+      back:
+        slots: [40]
+      close:
+        slots: [44]
+  rules-action:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      page-info:
+        slots: [4]
+      reset:
+        slots: [45]
+      previous-page:
+        slots: [46]
+      back:
+        slots: [49]
+      next-page:
+        slots: [52]
+      close:
+        slots: [53]
+      info-0:
+        slots: [10]
+      state-0:
+        slots: [19]
+      info-1:
+        slots: [11]
+      state-1:
+        slots: [20]
+      info-2:
+        slots: [12]
+      state-2:
+        slots: [21]
+      info-3:
+        slots: [13]
+      state-3:
+        slots: [22]
+      info-4:
+        slots: [14]
+      state-4:
+        slots: [23]
+      info-5:
+        slots: [15]
+      state-5:
+        slots: [24]
+      info-6:
+        slots: [16]
+      state-6:
+        slots: [25]
+      info-7:
+        slots: [28]
+      state-7:
+        slots: [37]
+      info-8:
+        slots: [29]
+      state-8:
+        slots: [38]
+      info-9:
+        slots: [30]
+      state-9:
+        slots: [39]
+      info-10:
+        slots: [31]
+      state-10:
+        slots: [40]
+      info-11:
+        slots: [32]
+      state-11:
+        slots: [41]
+      info-12:
+        slots: [33]
+      state-12:
+        slots: [42]
+      info-13:
+        slots: [34]
+      state-13:
+        slots: [43]
+  rules-reset-confirm:
+    rows: 3
+    title: ""
+    fallback-title: ""
+    buttons:
+      target:
+        slots: [13]
+      confirm:
+        slots: [11]
+      cancel:
+        slots: [15]
+  rules-role:
+    rows: 4
+    title: ""
+    fallback-title: ""
+    buttons:
+      visitor:
+        slots: [10]
+      member:
+        slots: [12]
+      co-owner:
+        slots: [14]
+      blocked:
+        slots: [16]
+      back:
+        slots: [31]
+      close:
+        slots: [35]
+  upgrade-confirm:
+    rows: 3
+    title: ""
+    fallback-title: ""
+    buttons:
+      confirm:
+        slots: [11]
+      info:
+        slots: [13]
+      cancel:
+        slots: [15]
+  flags-menu:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      back:
+        slots: [45]
+      info:
+        slots: [49]
+      close:
+        slots: [53]
+    content-slots: [11, 13, 15, 29, 31, 33]
+  flags-profile:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      back:
+        slots: [45]
+      close:
+        slots: [53]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  shop-main:
+    rows: 6
+    title: ""
+    fallback-title: ""
+    buttons:
+      info:
+        slots: [4]
+      close:
+        slots: [49]
+    content-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  shop-confirm:
+    rows: 3
+    title: ""
+    fallback-title: ""
+    buttons:
+      confirm:
+        slots: [11]
+      item:
+        slots: [13]
+      cancel:
+        slots: [15]

@@ -2,7 +2,7 @@
 
 A configurable protection-stone plugin for Minecraft servers. LederProtections uses WorldGuard regions and adds player-friendly protection management, configurable access rules, roles, GUIs, optional economy features, holograms, diagnostics, and migration tools.
 
-**Current release:** 1.4.1
+**Documentation version:** 1.5.0
 **Supported server families:** Spigot, Paper, Purpur, and compatible Bukkit forks
 **Recommended:** Paper (where a supported build is available)
 
@@ -39,7 +39,7 @@ Optional integrations:
 1. Stop the server and install compatible builds of WorldEdit and WorldGuard.
 2. Download the LederProtections release for your Minecraft version from [Modrinth](https://modrinth.com/plugin/lederprotections).
 3. Put the plugin JAR in the server's `plugins` folder and start the server.
-4. Review `plugins/LederProtections/config.yml` and `stones.yml`.
+4. Review `plugins/LederProtections/config.yml`, `menus.yml` and `stones.yml`.
 5. Check the installation with `/lep version` and `/lep check`.
 
 For detailed setup, see the [Installation](https://github.com/Alexisleder/LederProtections-Docs/wiki/Installation) and [Dependencies](https://github.com/Alexisleder/LederProtections-Docs/wiki/Dependencies) pages.
@@ -80,3 +80,17 @@ When reporting a problem, include the LederProtections version (`/lep version`),
 - [Diagnostics](https://github.com/Alexisleder/LederProtections-Docs/wiki/Diagnostics)
 - [FAQ](https://github.com/Alexisleder/LederProtections-Docs/wiki/FAQ)
 - [Changelog](https://github.com/Alexisleder/LederProtections-Docs/wiki/Changelog)
+
+## 1.5.0 configuration and guides
+
+- [Downloadable defaults / Archivos de configuración](resources/v1.5.0/): config,
+  menus, stones, English/Spanish messages and plugin metadata reference.
+- [Menu examples](resources/v1.5.0/examples/): vanilla, heads and external model.
+- [Release notes](https://github.com/Alexisleder/LederProtections-Docs/wiki/Release-1.5.0)
+- [GUI customization](https://github.com/Alexisleder/LederProtections-Docs/wiki/GUI-Themes)
+- [External packs](https://github.com/Alexisleder/LederProtections-Docs/wiki/External-Resource-Packs)
+
+No resource pack or automatic pack delivery is bundled. `/p home <name or ID>` uses
+accessible protections and the existing teleport rules. `gui-style` migrates to menus.yml
+with backups. Check [compatibility](COMPATIBILITY.md) before selecting server versions.
+Documentation availability does not imply the 1.5.0 JAR is already published on Modrinth.

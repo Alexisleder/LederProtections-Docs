@@ -1,83 +1,95 @@
-# LederProtections compatibility notes
+# Compatibility
 
-## Official target for `1.0.0-beta.2`
+LP does not include or deliver a resource pack. Server-provided themes use ordinary
+model keys/CMD and optional tracking of an exact external pack UUID. This is not a
+native item-registry adapter or certification of third-party pack managers. See
+[external pack setup and limits](https://github.com/Alexisleder/LederProtections-Docs/wiki/External-Resource-Packs).
 
-- **Minecraft:** 1.21.x
-- **Server software:** Spigot, Paper, Purpur and Pufferfish
-- **Recommended server:** Paper
-- **Build API base:** Spigot API 1.21.1
-- **Java:** 21
-- **Folia:** not supported yet
+## Release 1.5.0 verification — 2026-11-07
 
-LederProtections now uses a Bukkit/Spigot-compatible base for commands, messages, GUI item names/lore and inventory titles. Paper remains the recommended production server because of its performance and ecosystem, but it is no longer a hard runtime requirement for the public build.
+| Target | Evidence for this release | Server Java |
+|---|---|---|
+| Spigot API 1.21.1 | Final build and automated tests; release bytecode target | 21 |
+| Spigot API 26.2 | Final sources compiled successfully | 25 |
+| Spigot API 26.3 | Final sources compiled successfully | 25 |
+| Other 1.21.x / 26.1 patches | Compatibility targets, not individually verified in this closeout | Match server |
+| Paper / Purpur / Pufferfish | Bukkit/Spigot-compatible targets; no separate final runtime matrix recorded | Match server |
+| Geyser / Floodgate | Optional detection/fallback implemented; actual crossplay testing pending | Match Java backend |
+| Folia / future snapshots | Not supported claims | — |
 
-## Tested platforms
+The user reported successful local testing during development. Earlier context named
+26.2 as the test environment, but a fresh exact server/Java/WG/WE version capture and
+a checklist of tested actions were not supplied. Do not turn this into a claim that
+all versions or integrations have been tested in-game. The final config cleanup also
+needs checking on each administrator's own configuration.
 
-The `1.0.0-beta.2` compatibility build has been tested successfully on the Minecraft 1.21.x branch with:
+WorldEdit and WorldGuard are required. Vault, PlaceholderAPI and Head Database by
+Arcaniax are optional. Use dependency builds compatible with the actual server.
+The release JAR is built with Java 21 bytecode and `api-version: 1.21`; newer servers
+may require a newer JVM independently of the plugin's bytecode level.
 
-- Spigot
-- Paper
-- Purpur
-- Pufferfish
+[Minecraft 26.3 is a released version](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-3).
+[Paper's Java matrix](https://docs.papermc.io/paper/getting-started/) lists Java 21 for
+1.20–1.21.11 and Java 25 for 26.1+. These upstream requirements do not certify LP.
 
-This means the public compatibility text may state support for **Spigot/Paper/Purpur/Pufferfish on Minecraft 1.21.x**.
+The final source compilation matrix uses:
 
-## Unsupported platforms
+- Baseline: Spigot API `1.21.1-R0.1-SNAPSHOT`, WG `7.0.14`, WE `7.3.14`, Java 21.
+- Modern: Spigot API `26.2-R0.1-SNAPSHOT` and `26.3-R0.1-SNAPSHOT`, WG `7.0.19`,
+  WE `7.4.5`, Java 25. These are compile inputs, not a universal dependency recommendation.
 
-The following platforms are not officially supported by this build:
+Reproduce the modern compile in PowerShell:
 
-- **Folia:** not supported yet. Folia requires explicit scheduler and region-thread compatibility work.
-- **Fabric / Forge / NeoForge:** not Bukkit/Spigot plugin platforms.
-- **Sponge:** different plugin API.
-- **Velocity / BungeeCord / Waterfall:** proxy platforms, not world servers.
-- **Mohist / Magma / Arclight:** hybrid mod/plugin servers are not officially supported because event, inventory and protection behavior can differ from standard Bukkit/Paper servers.
-
-## Required dependencies
-
-- WorldGuard
-- WorldEdit
-
-## Optional dependencies
-
-- Vault
-- PlaceholderAPI
-- LuckPerms
-- CoreProtect
-- Dynmap
-- BlueMap
-- ItemsAdder
-- Oraxen
-- MythicMobs
-- Citizens
-
-Optional hooks are detected defensively and should not prevent the plugin from starting when missing, unless a feature explicitly needs that plugin.
-
-## Public compatibility text
-
-### English
-
-```text
-Compatible with Minecraft 1.21.x on Spigot, Paper, Purpur and Pufferfish.
-Paper is recommended for production servers.
-Folia is not supported yet.
-Requires WorldGuard and WorldEdit. Vault and PlaceholderAPI are optional.
+```powershell
+./gradlew clean compileJava '-PtargetJavaVersion=25' '-PspigotApiVersion=26.3-R0.1-SNAPSHOT' '-PworldGuardVersion=7.0.19' '-PworldEditVersion=7.4.5'
 ```
 
-### Español
+Then rebuild the distribution with `./gradlew clean test shadowJar` using the default
+Java 21 target. Do not distribute a Java 25 test build as the Java 21 baseline JAR.
+See the [runtime checklist](https://github.com/Alexisleder/LederProtections-Docs/wiki/GUI-Release-Checklist) for remaining checks.
 
-```text
-Compatible con Minecraft 1.21.x en Spigot, Paper, Purpur y Pufferfish.
-Paper es recomendado para servidores en producción.
-Folia no está soportado todavía.
-Requiere WorldGuard y WorldEdit. Vault y PlaceholderAPI son opcionales.
-```
+## Optional integrations
 
-## Support command
+### Geyser / Floodgate preview
 
-Use this command when testing or reporting problems:
+LP detects Bedrock players through the optional public Floodgate 2 API or Geyser API,
+never by username prefixes. With the API available on the backend, Bedrock users
+receive ordinary inventory menus, readable fallback titles and vanilla state items;
+the Java resource pack is not offered to them. Custom player-head menu icons use a
+plain item fallback with their names/lore. Authorization stays on the Java server
+and uses the connected player's UUID.
 
-```text
-/lep info
-```
+Install/configure Floodgate on the backend when it lives behind a proxy; merely
+installing it on the proxy does not expose its API to LP. This integration does not
+implement native Bedrock forms or a Bedrock resource pack. Automated tests cover
+disabling Java theme rendering for detected Bedrock players; real crossplay tests,
+including linked accounts and permission checks, are pending.
 
-It reports the plugin version, platform, Java version, dependencies, loaded protection data and optional hooks.
+Sources: [Floodgate API](https://geysermc.org/wiki/floodgate/api/),
+[Geyser API](https://geysermc.org/wiki/geyser/api/),
+[resource pack limitations](https://geysermc.org/wiki/geyser/faq/).
+
+`/lep hooks` reports detected and enabled optional plugins. Detection does not
+mean every feature is automatically integrated: Vault and PlaceholderAPI have
+active integrations, while other detected plugins may currently provide only
+compatibility status or a foundation for future work.
+
+## Third-party protection-aware actions
+
+LederProtections cannot safely intercept every action performed entirely inside
+another plugin. For example, a sell-wand plugin may read and empty a chest
+without firing a normal inventory-open event.
+
+The other plugin should load [Public API](https://github.com/Alexisleder/LederProtections-Docs/wiki/Public-API) and call `canOpenContainer` before
+reading, selling or removing items. It can similarly use `canBreakBlock`,
+`canPlaceBlock` and `canInteractWithBlock`. Invalid/unloaded inputs fail closed.
+
+If an integration does not call the API, cooperation from that plugin's author
+is required; there is no reliable global listener that can infer every custom
+plugin action after the fact.
+
+## Production checks
+
+After an update, run `/lep version`, `/lep hooks` and `/lep check`, then test
+stone creation/removal, GUIs, rules, public visits, holograms and each optional
+integration used by the server.

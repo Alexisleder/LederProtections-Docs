@@ -1,0 +1,10 @@
+# Optional direct skin texture; no Head Database dependency required.
+schema-version: 1
+pack-aware: false
+menus:
+  main:
+    buttons:
+      management:
+        icon:
+          material: BOOK
+          texture: "4312ca4632def5ffaf2eb0d9d7cc7b55a50c4e3920d90372aab140781f5dfbc4"

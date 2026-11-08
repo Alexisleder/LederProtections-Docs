@@ -1,6 +1,14 @@
 # ============================================================
 # LederProtections - Configuración principal / Main configuration
 # ============================================================
+resource-pack:
+  # LP does not include, host, send or remove resource packs.
+  # off: vanilla menus. external: track the pack delivered by your server/manager.
+  mode: off
+  external:
+    # Exact UUID of the pack containing YOUR menu assets. Reconnect after changing.
+    pack-id: ""
+
 #
 # ES:
 # LederProtections usa WorldGuard como backend de regiones, pero mantiene
@@ -225,40 +233,15 @@ update-checker:
 
 
 # ============================================================
-# Action bar / Barra de acción
-# ============================================================
-#
-# ES:
-# Muestra avisos encima de la hotbar cuando un jugador entra o sale
-# de una protección. Usa mensajes traducibles para evitar ruido en chat.
-#
-# EN:
-# Shows notices above the hotbar when a player enters or leaves
-# a protection. Uses translated messages to avoid chat noise.
-# ============================================================
-
-actionbar:
-  protection-entry-exit:
-    # ES: Activa los avisos al entrar o salir de protecciones.
-    # EN: Enables notices when entering or leaving protections.
-    enabled: true
-
-    # ES: Cooldown entre mensajes para evitar parpadeo al cruzar bordes.
-    # EN: Cooldown between messages to avoid flickering near borders.
-    cooldown-ms: 750
-
-# ============================================================
 # Compatibilidad opcional / Optional compatibility
 # ============================================================
 #
 # ES:
-# Estos hooks no son dependencias obligatorias. Sirven como base para
-# integraciones futuras con plugins populares del ecosistema Bukkit/Spigot/Paper.
+# Estos hooks no son dependencias obligatorias. Solo se configuran aquí las funciones implementadas.
 # Si un plugin no está instalado, LederProtections seguirá funcionando.
 #
 # EN:
-# These hooks are not required dependencies. They are a foundation for
-# future integrations with popular Bukkit/Spigot/Paper ecosystem plugins.
+# These hooks are not required dependencies. Only implemented integrations have settings here.
 # If a plugin is not installed, LederProtections will continue working.
 # ============================================================
 
@@ -272,8 +255,6 @@ compatibility:
   hooks:
     vault:
       enabled: true
-    luckperms:
-      enabled: true
     placeholderapi:
       enabled: true
       # ES: Registra placeholders propios de LederProtections en PlaceholderAPI.
@@ -281,26 +262,13 @@ compatibility:
       register-expansion: true
       # ES: Caché breve para scoreboards y TAB que solicitan placeholders de forma asíncrona.
       # EN: Short cache for scoreboards and tab lists that request placeholders asynchronously.
+      # Advanced / Avanzado: normally leave these two timings unchanged.
       cache-duration-ms: 1000
       # ES: Espera máxima de una consulta asíncrona al hilo principal. Al agotarse,
       #     se devuelve el último valor reciente o se deja el placeholder sin resolver.
       # EN: Maximum wait for an asynchronous query to reach the main thread. On timeout,
       #     the latest recent value is returned or the placeholder remains unresolved.
       async-timeout-ms: 100
-    coreprotect:
-      enabled: true
-    dynmap:
-      enabled: true
-    bluemap:
-      enabled: true
-    itemsadder:
-      enabled: true
-    oraxen:
-      enabled: true
-    mythicmobs:
-      enabled: true
-    citizens:
-      enabled: true
 
 # ============================================================
 # Límites de protecciones / Protection limits
@@ -897,26 +865,6 @@ rules:
         ender-pearl: "deny"
 
 # ============================================================
-# Flags legacy de WorldGuard / Legacy WorldGuard flags
-# ============================================================
-#
-# ES:
-# Este sistema queda vacío porque las reglas finas ahora se manejan
-# con el motor propio de LederProtections.
-#
-# Se conserva la sección para compatibilidad interna con clases GUI antiguas.
-#
-# EN:
-# This system is left empty because fine-grained permissions are now
-# handled by the custom LederProtections rule engine.
-#
-# The section is kept for internal compatibility with older GUI classes.
-# ============================================================
-
-flags:
-  profiles: {}
-
-# ============================================================
 # Public protections and warp directory
 # ============================================================
 public-protections:
@@ -936,6 +884,15 @@ public-protections:
     blocked-words: []
   icons:
     default: "GRASS_BLOCK"
+    head-names:
+      house: "Casa / House"
+      globe: "Mundo / World"
+      person: "Jugador / Player"
+    # Curated selectable skins. Players can choose these IDs, never arbitrary URLs.
+    heads:
+      house: "d9910cf600d21a0404d9df4b0d659ed484186ae0614270f7a6429f704d0bdbc9"
+      globe: "8ba8e0508192a3e592e11f677012fb18895f4fe743f8827d92c43102b848b0fe"
+      person: "bc4b9532686a35ba70bad9916c77be08704cb832a9e19d454237ae1f0366afb4"
     available:
       - "GRASS_BLOCK"
       - "SPAWNER"

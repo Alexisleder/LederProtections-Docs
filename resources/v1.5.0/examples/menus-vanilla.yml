@@ -1,0 +1,9 @@
+# Minimal standalone theme. Unspecified fields inherit LP defaults.
+schema-version: 1
+pack-aware: false
+menus:
+  main:
+    buttons:
+      management:
+        icon:
+          material: BOOK

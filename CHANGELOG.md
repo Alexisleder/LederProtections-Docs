@@ -1,317 +1,465 @@
-# Changelog
+# LederProtections Changelog
 
-## LederProtections v1.1.0
+## 1.5.0 — Customizable Menus & Protection Insights
 
-### Added
-- Added ProtectionStones migration tools.
-- Added `/lep migrate protectionstones scan`.
-- Added `/lep migrate protectionstones import --dry-run`.
-- Added `/lep migrate protectionstones import`.
-- Added single-region migration support with `--region`.
-- Added strict exact-radius migration by default.
-- Added missing-tier detection and suggested `stones.yml` generation.
-- Added ProtectionStones custom name migration from `ps-name`.
-- Added cleanup of old ProtectionStones greeting/farewell WorldGuard flags.
-- Added automatic safe source-stone conversion to LederProtections stone materials.
-- Added `--keep-source-stones`.
-- Added native LederProtections export/import commands.
+- Customizable layouts for all 22 menus, optional heads and external-pack presentation.
+- Simpler protection/public menus and paginated role rules without the Source line.
+- New `/p home <name or ID>` and immediate movement-based entry/exit notices.
+- Interactive inspection, stale-context checks and safer confirmation sessions.
+- Bounded LRU icon caching and reduced repeated GUI work.
+- Configuration cleanup with backed-up gui-style migration to menus.yml.
+- No integrated resource pack or automatic pack delivery.
 
-### Changed
-- ProtectionStones migration now skips unmatched radii by default instead of resizing protections.
-- `--mode nearest` remains available for advanced migrations, but may resize protections.
-- Imported ProtectionStones vertical bounds are normalized to the actual world height.
-
-### Notes
-- Always back up your server before migration.
-- Always run dry-run before real import.
-- ProtectionStones regions are not deleted automatically.
-- Missing custom radii should be added to `stones.yml` or generated with `suggest-stones`.
-
-## LederProtections v1.0.0
-
-First stable release of LederProtections for Minecraft 1.21.x servers.
-
-This release includes all protection, GUI, economy, role-management, diagnostics, update-checker and security hardening work completed during the beta cycle.
-
-### Compatibility
-
-* Spigot 1.21.x
-* Paper 1.21.x
-* Purpur 1.21.x
-* Pufferfish 1.21.x
-
-Paper remains recommended for production servers.
-
-Folia is not supported yet.
-
-### Highlights
-
-* WorldGuard-backed protection stones.
-* Custom internal rule engine for protection actions.
-* Personal protection GUI through `/p`.
-* Dedicated administrative protection browser through `/lep admin`.
-* Protection member, co-owner and owner role management.
-* Protection transfer support.
-* Protection rename support.
-* Protection upgrades.
-* Optional Vault economy support.
-* Optional protection shop.
-* Protection teleport support with cooldown and movement checks.
-* PlaceholderAPI expansion.
-* Runtime diagnostics through `/lep info`, `/lep status`, `/lep version` and `/lep check`.
-* Modrinth-based update checker.
-* Full beta-cycle hardening for GUIs, permissions, persistence and protection bypasses.
-
-### Changed
-
-* Promoted the plugin from beta to the first stable `v1.0.0` release.
-* Cleaned up `/lep version` so it now focuses on the plugin core version and update-checker status.
-* Kept `/lep check` focused on protection diagnostics instead of version information.
-* Kept `/lep info` and `/lep status` as broader runtime diagnostic commands.
-
-### Notes
-
-* The update checker does not download, install, replace or modify plugin files automatically.
-* The update checker only checks Modrinth and notifies administrators when a newer version is available.
-* Documentation updates for the stable release are handled separately in the public documentation repository.
+[Complete English/Spanish changelog](https://github.com/Alexisleder/LederProtections-Docs/wiki/Release-1.5.0) · [Compatibility](https://github.com/Alexisleder/LederProtections-Docs/wiki/Compatibility)
 
 ---
 
-## LederProtections v1.0.0-beta.8
+## v1.4.1
 
-Security fix beta for dispenser projectile protection bypasses.
+GUI and hologram presentation improvements.
 
-### Fixed
+- Updated the project version to `1.4.1`.
+- Replaced repeated icons in the protection menu with more distinct materials.
+- Added optional Minecraft skin textures for directory categories, with configured material icons as fallback.
+- Removed the large default background panel behind protection holograms while retaining text shadows.
+- Changed the default hologram lines to show a welcome, protection name, owner (`{owner}`), description, world and stone coordinates.
+- Made `{user}` identify the player viewing the hologram and `{owner}` identify the protection owner. Holograms containing `{user}` are rendered as private per-viewer TextDisplays.
+- Added event-driven proximity reconciliation on block movement, join, respawn and chunk load; displays are cleaned up on exit and quit without periodic scans or forced chunk loads.
+- Documented all native hologram variables in `config.yml`, including the distinct `{owner}` and `{user}` meanings; PlaceholderAPI expansions in private holograms use the viewer's context and refresh without per-tick polling.
+- Existing custom hologram lines are preserved; replace `{user}` with `{owner}` when an old line intended to display the protection owner.
+- Documented legacy `&` colors and formatting for hologram lines.
+- Added a `head-texture` category option. It accepts only a 64-character texture hash from `textures.minecraft.net`; blank keeps the category material.
+- Integrated bStats using plugin ID `34348` for aggregate server and version statistics. LederProtections adds no custom charts or player/protection data.
+- Relocated bStats classes into LederProtections' namespace to avoid conflicts with other plugins.
 
-* Fixed a protection bypass where dispensers could shoot arrows across protection borders and damage players.
-* Blocked dispenser-fired projectile damage when crossing from outside into a protection.
-* Blocked dispenser-fired projectile damage when crossing from inside a protection to outside.
-* Blocked dispenser-fired projectile damage when crossing between different protections.
-* Preserved normal projectile behavior when the dispenser and target are in the same protection context.
-
-### Notes
-
-* Projectiles that do not cross protection boundaries keep their normal behavior.
-* This version became the final beta base for the first stable release.
-
----
-
-## LederProtections v1.0.0-beta.7
-
-Polish beta for update-checker visibility and PvP knockback handling.
-
-### Changed
-
-* Improved Modrinth update-checker console output.
-* The update checker now reports when the installed version is already up to date.
-* The update checker now reports when the installed version is newer than the latest version currently published on Modrinth.
-* Reworked PvP knockback handling to avoid deprecated Bukkit/Paper event usage.
-
-### Fixed
-
-* Removed the startup warning caused by the deprecated `EntityKnockbackByEntityEvent`.
-* Preserved PvP/knockback protection behavior after replacing the deprecated event handling.
-
-### Notes
-
-* The update checker remains informational only.
-* It does not download or install updates automatically.
+See [Minecraft-Heads](https://minecraft-heads.com/custom-heads) for a browsable head catalogue. LederProtections does not query this site at runtime.
 
 ---
 
-## LederProtections v1.0.0-beta.6
+## v1.4.0
 
-Update-checker beta.
+Public protection directory, holograms, and native environmental policies.
+
+See the [complete 1.4.0 release notes](https://github.com/Alexisleder/LederProtections-Docs/wiki/Release-1.4.0) for behavior, customization, security, upgrade guidance, and future improvement areas.
 
 ### Added
 
-* Added a Modrinth-based update checker.
-* Added startup update checking.
-* Added administrator join notifications when a newer version is available.
-* Added `lederprotections.update` permission for update notifications.
-* Added update-checker messages to the language files.
+- Added opt-in public protection profiles with configurable titles, descriptions, categories, icons, welcome messages, visit points, and visibility.
+- Added the `/warps` public directory with search, category filtering, sorting, favorites, visit counters, and pagination.
+- Added configurable public-visit warmups, cooldowns, movement/damage cancellation, cross-world control, and safe destination validation.
+- Added administrator controls for featured and hidden directory entries.
+- Added Bukkit `TextDisplay` holograms with configurable lines, placeholders, range, height, and per-protection state.
+- Added inheritable per-protection environmental policies for hostile spawning, TNT, creepers, other explosions, and fire spread.
+- Added `LederProtectionsApi#canOpenContainer` so sell-wand and inventory addons can enforce the same container rules before mutating contents.
+- Added `canBreakBlock`, `canPlaceBlock`, and `canInteractWithBlock` public API checks for broader plugin integration.
+- Added complete public-directory, hologram, role, bounds, limit, and compatibility placeholders.
+- Moved the public API source into the standalone `LederAPI` project and versioned artifact `com.alexisleder:lederprotections-api:1.0.0`.
 
 ### Changed
 
-* Update source is handled internally by the plugin.
-* Download redirection points to the public Modrinth project page.
-* Simplified update-checker configuration.
-
-### Configuration
-
-```yml
-update-checker:
-  enabled: true
-  check-on-startup: true
-  notify-admins-on-join: true
-```
-
-### Notes
-
-* The update checker only checks Modrinth for available versions.
-* The update checker does not download, install or replace files automatically.
-* This version is the first version capable of detecting future updates.
-
----
-
-## LederProtections v1.0.0-beta.5
-
-Stability and compatibility beta.
-
-### Compatibility
-
-* Confirmed compatibility across Minecraft 1.21.x.
-* Confirmed compatibility with Spigot.
-* Confirmed compatibility with Paper.
-* Confirmed compatibility with Purpur.
-* Confirmed compatibility with Pufferfish.
-
-Paper remains recommended for production servers.
-
-Folia is not supported yet.
-
-### Changed
-
-* Continued polishing the separation between the personal protection GUI and the admin protection browser.
-* Improved GUI behavior across Spigot-compatible servers.
-* Improved compatibility behavior for Paper forks.
-* Improved protection listing behavior for administrators.
-* Improved internal handling for translated role/group names.
-* Improved general runtime stability before the update-checker integration.
+- Environmental explosion and fire decisions now use LederProtections policies while protection-boundary barriers remain enforced independently.
+- Existing bundled configuration and language files receive missing 1.4.0 keys through the safe merge and backup system.
+- Existing protections remain private by default until their public profile is explicitly changed.
+- `/lep reload` now refreshes optional compatibility hooks and safely replaces the internal PlaceholderAPI expansion.
+- Placeholder requests from asynchronous consumers now use bounded main-thread resolution, short-lived caches and deduplicated work.
+- Native imports, update responses, addon tab completions and audit writes now enforce defensive limits.
 
 ### Fixed
 
-* Fixed additional missing-message cases.
-* Improved GUI extraction protection for Spigot behavior.
-* Reduced unwanted feedback from fake-player combat interactions.
-* Improved protection border particle behavior so border previews are shown only to the requesting player.
-* Improved shop behavior when player inventory state changes.
-* Improved upgrade validation and protected-area checks.
+- Fixed `directory.favorite.yes` and `directory.favorite.no` being parsed as YAML boolean keys during upgrades.
+- Removed raw material identifiers from public icon selector item titles while retaining lore, PDC identification, and whitelist validation.
+- Updated the default hologram heading to `PROTECCIÓN` in Spanish and `PROTECTION` in the English fallback.
 
 ### Notes
 
-* This beta focused on stability and compatibility before adding the update checker.
+- No manual protection-data migration is required.
+- Existing administrator customizations are preserved; missing keys are added without replacing entire YAML files.
+- Customized `holograms.lines` lists are not overwritten.
+- The public API contract remains version `1.0`.
 
----
+### Quality of life
 
-## LederProtections v1.0.0-beta.4
+- Public destinations now include search, categories, sorting, favorites, visit counters, and pagination.
+- Protection publication is opt-in; existing protections stay private after upgrading.
+- Public icon names are player-friendly and no longer expose raw Bukkit material identifiers.
+- `/lep reload` applies compatibility, directory, hologram, and PlaceholderAPI changes without requiring a complete server restart.
+- New configuration and language keys use the backup-aware merge system and preserve customized values.
 
-GUI, command and rule-engine polish beta.
+### Customization
 
-### Changed
+- Server owners can configure public categories, allowed icons, visit behavior, directory rules, and safe-teleport controls.
+- Players can customize public titles, descriptions, welcome messages, visibility, visit points, and hologram state within configured limits.
+- Holograms support global, default, and per-protection state plus configurable lines, height, view distance, line width, and colors.
+- Environmental defaults can be inherited or overridden per protection.
 
-* Improved `/p` personal GUI behavior.
-* Improved `/lep admin` administrative GUI behavior.
-* Improved protection member-management GUI interactions.
-* Improved protection role handling for owner, co-owner, member and visitor contexts.
-* Improved command routing for protection management commands.
-* Improved internal rule checks for protected interactions.
-* Improved validation for protection upgrades and region changes.
+### Structure and performance
 
-### Fixed
-
-* Fixed additional GUI interaction edge cases.
-* Fixed protection-management actions that could behave inconsistently after persistence failures.
-* Fixed more command paths involving explicit protection IDs.
-* Fixed additional edge cases around protected interactions.
-* Improved handling of fake players and automated interactions.
-
-### Notes
-
-* This beta focused on polishing the systems introduced in earlier betas and reducing edge-case bypasses.
-
----
-
-## LederProtections v1.0.0-beta.3
-
-Production-hardening beta for Minecraft 1.21.x servers.
+- The public API contract now lives in the standalone `LederAPI` project while private implementations remain in LederProtections.
+- Addons obtain the API through Bukkit's `ServicesManager` and consume immutable snapshots instead of private classes.
+- Directory, hologram, compatibility, and placeholder responsibilities are isolated in dedicated services.
+- Holograms avoid per-tick world scans and use targeted loaded-chunk cleanup.
+- Placeholder work is cached, deduplicated, bounded, and safely transferred to the primary thread when required.
+- Protection mutation events are coalesced so consumers observe coherent repository and spatial-index state.
 
 ### Compatibility
 
-* Spigot 1.21.x
-* Paper 1.21.x
-* Purpur 1.21.x
-* Pufferfish 1.21.x
+- The default release continues to compile against Spigot API 1.21.1 and Java 21 for the widest 1.21.x compatibility.
+- The same sources also compile against Spigot API 26.3, WorldGuard 7.0.19, and WorldEdit 7.4.5 using Java 25.
+- The plugin does not require Paper-only, Adventure, CraftBukkit, or NMS classes at runtime.
+- Bukkit/Spigot `TextDisplay` is used for holograms.
+- Spigot, Paper, Purpur, and Pufferfish 1.21.x and compatible 26.x builds are supported targets; Paper remains recommended when a stable build exists.
+- Java 21 is required for 1.21.x; Minecraft 26.1+ and its current WorldGuard/WorldEdit builds require Java 25.
+- Folia is not supported yet.
 
-Paper remains recommended for production servers.
+### Areas for future improvement
 
-Folia is not supported yet.
+The following are roadmap candidates, not 1.4.0 promises:
+
+- Automated runtime regression tests on real Spigot, Paper, Purpur, and Pufferfish servers.
+- A complete Folia scheduler and region-thread audit.
+- Public Maven hosting, CI releases, signed API artifacts, and binary compatibility checks.
+- Deeper optional integrations for hooks that currently provide detection or limited compatibility.
+- Configurable PlaceholderAPI boolean and empty-value output styles.
+- Additional timings, profiling, and large-network integration tests.
+
+---
+
+## v1.3.0
+
+Public addon API release.
 
 ### Added
 
-* Added `/lep admin`, a dedicated administrative protection browser.
-* Added `lederprotections.admin.protections` permission for viewing all server protections through the admin GUI.
-* Added clearer Folia diagnostics while keeping Folia marked as unsupported.
-* Added `.gitattributes` line-ending normalization for cleaner Git diffs.
+- Added the versioned `LederProtectionsApi` service, obtainable through Bukkit's `ServicesManager`.
+- Added immutable protection, bounds, and teleport-home snapshots with stable protection IDs.
+- Added stored and effective role queries, member-feature checks, and addon-setting management checks.
+- Added bounded safe-location searches that reuse the protection teleport safety policy and support an interior margin.
+- Added snapshot-based safe-location searches for landing after a protection is removed.
+- Added non-cancelable create, change, and removal lifecycle events with change categories.
+- Added a formal registry for addon subcommands under `/p`, including permissions, tab completion, reserved-name validation, and automatic cleanup when the addon is disabled.
+- Added developer integration documentation in `docs/API.md`.
+- Added a dedicated API jar and Maven Local publication configuration under `com.alexisleder:lederprotections-api:1.0`.
 
 ### Changed
 
-* `/p` is now a personal player protection menu, even for administrators.
-* Administrators no longer automatically see every server protection in `/p`.
-* Global protection browsing is now separated into `/lep admin`.
-* Improved command permission routing so `/lep info`, `/lep status`, and `/lep version` can use `lederprotections.info` without granting normal player management access.
-* Improved optional protection ID handling for commands such as rename, transfer, member, co-owner, block and debug helpers.
-* Improved persistence handling so commands and GUIs do not report success if protection saving fails.
-
-### Fixed
-
-* Fixed PvP-denied interactions applying knockback in protected areas.
-* Reduced spam from repeated PvP-denied messages.
-* Prevented shop purchases when the player inventory is full.
-* Prevented purchased protection stones from being dropped on the ground when inventory space is unavailable.
-* Hardened economy transactions for shop purchases, upgrades and teleport costs.
-* Hardened protection update persistence after rename, transfer, member changes, blocked-player changes, rule changes, debug changes and GUI changes.
-* Improved safe handling of invalid explicit protection IDs to avoid accidentally falling back to the current protection.
-
----
-
-## LederProtections v1.0.0-beta.2
-
-Spigot compatibility and GUI hardening beta.
-
-### Compatibility
-
-* Migrated the public build to a Bukkit/Spigot-compatible base.
-* Removed the runtime requirement for Paper Adventure components from GUI, item and message layers.
-* Verified compatibility on Minecraft 1.21.x with Spigot, Paper, Purpur and Pufferfish.
-* Paper remains recommended for production servers.
-* Folia is not supported yet.
-
-### Security and hardening
-
-* Hardened plugin GUIs against shift-click, number-key swaps, double-click, drag, drop and offhand swap interactions.
-* Added extra inventory synchronization for Spigot ghost-item behavior when players close GUIs immediately after blocked clicks.
-* Centralized GUI item creation and GUI context parsing to reduce duplicated logic and translation-sensitive comparisons.
-
-### Support tools
-
-* Added `/lep info`, `/lep status` and `/lep version` for quick runtime diagnostics.
-* Added platform diagnostics for Spigot/Paper/Purpur/Pufferfish-like servers and Adventure runtime availability.
-* Added a dedicated `lederprotections.info` permission for runtime information access.
-
----
-
-## LederProtections v1.0.0-beta.1
-
-Initial public beta.
-
-### Added
-
-* Added WorldGuard-backed protection stones.
-* Added configurable protection stone types.
-* Added protection creation by placing configured stones.
-* Added protection removal behavior when breaking protection stones.
-* Added owner-based protection management.
-* Added role-based protection access with visitor, member, co-owner and owner contexts.
-* Added custom internal rule checks for protected actions.
-* Added GUI-based protection management.
-* Added member management.
-* Added Vault economy support.
-* Added protection upgrades.
-* Added protection border preview support.
-* Added PlaceholderAPI support.
-* Added audit and backup foundations.
+- Protection mutations in one server cycle are coalesced before lifecycle events are published, preventing transient import rollback states from leaking to addons.
+- Coalesced removal events retain the last record actually deleted, so snapshot-based safety uses the correct final bounds and home.
+- Lifecycle events are published on the next main-thread cycle so the repository and spatial index are coherent when listeners receive them.
+- Public effective roles now reserve `ADMIN` for `lederprotections.admin`; rule-engine bypass permissions never grant addon membership.
+- `BLOCKED` now has explicit precedence in member-feature checks, including over the global administrator permission.
+- Stored-role resolution also gives `BLOCKED` precedence over accidentally overlapping owner, co-owner, or member entries.
 
 ### Notes
 
-* This was the first public beta foundation for LederProtections.
+- The public API contract version is `1.0`; it is intentionally independent from the plugin version `1.3.0`.
+- No protection-data or configuration migration is required.
+- Existing security listeners and rules are unchanged.
+
+---
+
+## v1.2.1
+
+Protection-boundary and automation security hotfixes.
+
+### Added
+
+- Added `container-open` as an independent rule for dispensers, droppers, hoppers, furnaces, brewing stands, crafters, and other functional containers.
+- Added persistent origin tracking for falling blocks and dispenser projectiles without resident projectile maps.
+- Added authoritative dispenser projectile checks for impacts, entity damage, fire, explosions, splash potions, and lingering potion clouds.
+
+### Changed
+
+- Purely environmental block formation is allowed inside protections while entity-caused formation is validated separately.
+- `pressure-plate-use` now also documents and controls tripwire and redstone ore for backward-compatible configuration keys.
+- New installations deny visitor physical-trigger use by default. Existing configured values remain preserved during updates.
+- Redstone boundary checks now compare direct power per face and retain legitimate internal power when internal and external signals coexist.
+- Ender chests are governed by `chest-open`; other functional containers use `container-open`.
+
+### Fixed
+
+- Fixed natural snow, ice, fluid generators, concrete hardening, snow golems, and authorized Frost Walker being blocked by the environmental listener.
+- Fixed automatic bone meal and moss growth crossing from outside or between different protections.
+- Fixed pressure plates, farmland trampling, turtle eggs, tripwire, and redstone ore bypassing physical-interaction rules.
+- Fixed exterior pressure plates and foreign redstone sources activating protected mechanisms.
+- Fixed visitors opening dispensers, droppers, hoppers, furnaces, and similar containers without a dedicated rule.
+- Fixed Endermen, falling blocks, villagers, sheep, and other entity block changes not enforcing protection boundaries consistently.
+- Fixed dispenser projectiles relying only on a short trajectory prediction and allowing distant secondary effects.
+- Fixed protected dispensers firing when their only direct power source belonged to the exterior or another protection.
+- Fixed duplicate entity-interaction message cooldown entries remaining after players disconnected.
+
+### Notes
+
+- No protection-data migration is required.
+- Missing `container-open` keys and translations are merged automatically without overwriting customized values.
+- Existing `pressure-plate-use` values are intentionally preserved; administrators upgrading from an older config should review that rule for visitors.
+
+---
+
+## v1.2.0
+
+Entity protection rules and safer configuration updates.
+
+### Added
+
+- Added `entity-interact` to control interactions with villagers, animals, and other living entities inside protections.
+- Added `entity-damage` to protect villagers, golems, mobs, and other non-animal living entities from unauthorized player damage.
+- Added automatic bundled configuration updates for `config.yml`, `stones.yml`, `lang/es.yml`, and `lang/en.yml`.
+- Added backup and default-snapshot handling so new config keys can be merged without overwriting user customizations.
+
+### Changed
+
+- Existing `animal-damage`, PvP, and decorative entity rules remain separate to preserve existing behavior.
+- `/lep reload` now applies safe bundled config/language updates before reloading registries.
+
+### Fixed
+
+- Fixed villagers and other non-animal living entities not having dedicated native protection rules.
+- Fixed duplicated denied-action chat messages when right-clicking protected entities such as villagers.
+
+### Notes
+
+- No protection data migration is required.
+- Existing user config values are preserved. Missing bundled keys are added automatically on startup or `/lep reload`.
+- Server owners should still back up before updating and test on a staging server when possible.
+
+---
+
+## v1.0.0
+
+First stable release.
+
+### Changed
+
+- Promoted the plugin version from `1.0.0-beta.8` to `1.0.0`.
+- Cleaned `/lep version` so it only shows the plugin core version and update checker status.
+- Kept detailed runtime diagnostics in `/lep info` and `/lep status`.
+
+### Notes
+
+- This release includes the beta.8 dispenser projectile boundary fix.
+- Public documentation updates remain pending for the final documentation pass.
+
+---
+
+## v1.0.0-beta.8
+
+Security and protection-boundary fix.
+
+### Fixed
+
+- Blocked dispenser/dropper projectiles from damaging entities across protection borders.
+- Prevented arrows and similar projectiles from being used as protected-area turrets from inside to outside.
+- Prevented arrows and similar projectiles from being used to damage entities inside protections from outside.
+
+### Notes
+
+- Projectiles fired by machines are still allowed when both source and target are inside the same protection, or when both are outside protections.
+
+---
+
+## v1.0.0-beta.7
+
+Release polish and startup diagnostics.
+
+### Changed
+
+- Improved update checker startup logging when the installed version is already up to date.
+- Improved update checker startup logging when the installed version is newer than the current Modrinth release.
+- Replaced deprecated PvP knockback event handling with a short PlayerVelocityEvent-based cancellation window.
+
+### Notes
+
+- The update checker still only notifies; it does not download or install updates automatically.
+- The PvP change keeps blocked hits from applying knockback while avoiding Paper's deprecated event warning.
+
+---
+
+## v1.0.0-beta.6
+
+Update checker integration and release polish.
+
+### Added
+
+- Added a lightweight update checker with the official Modrinth source built in.
+- Added async version checks against the public Modrinth project versions endpoint.
+- Added admin join notifications for newer versions.
+- Added `lederprotections.update` permission.
+- Added Spanish and English update notification messages.
+
+### Notes
+
+- The checker does not download or install anything automatically.
+- The public update source is built into the plugin; config only controls whether startup checks and admin join notices are enabled.
+- Update notices redirect admins to the public Modrinth page.
+
+---
+
+## v1.0.0-beta.4
+
+Quality-of-life, admin browser and player notification update.
+
+### Added
+
+- Added filters and sorting to the `/lep admin` protection browser.
+- Added creation date display in the admin protection browser.
+- Added permission-based protection limits for server ranks.
+- Added action bar notices when entering or leaving protections.
+- Added per-player preferences to enable or disable entry/exit notices.
+
+### Changed
+
+- Polished Spanish and English chat messages to be shorter and clearer.
+- Improved localization for admin browser filters and sorting labels.
+- Improved `/p` player menu usability with a notification preference button.
+- Improved admin protection browsing with clearer filter and sort feedback.
+
+### Fixed
+
+- Fixed missing Spanish notification preference messages.
+- Fixed the admin browser player-head button so it shows the viewer skin.
+- Fixed leftover documentation and support-template cleanup before release.
+
+### Supported
+
+- Spigot 1.21.x
+- Paper 1.21.x
+- Purpur 1.21.x
+- Pufferfish 1.21.x
+- Java 21
+- WorldGuard
+- WorldEdit
+- Vault
+- PlaceholderAPI
+
+### Notes
+
+- Paper is recommended for production servers.
+- Folia is not supported yet.
+- Older Minecraft versions before 1.21 are not officially supported.
+- This is still a beta release. Testing on a staging server is recommended before production usage.
+
+---
+
+## v1.0.0-beta.3
+
+Production hardening and admin tools update.
+
+### Added
+
+- Added `/lep admin`, a dedicated admin GUI to browse all server protections.
+- Added `lederprotections.admin.protections` permission.
+- Added owner, location, type, size and member information to the admin protection browser.
+- Added safer persistence handling for protection updates.
+- Added better protection data recovery behavior through safer save handling.
+
+### Changed
+
+- `/p` now only shows protections where the player has a normal relationship, such as owner, co-owner or member.
+- Admins no longer see every server protection in the normal player menu.
+- Global protection browsing is now separated into `/lep admin`.
+- Improved command permission handling.
+- Improved optional protection ID behavior in commands.
+- Improved economy transaction safety for shop purchases, upgrades and teleport costs.
+
+### Fixed
+
+- Fixed shop purchases with full inventory. The player is no longer charged and the item is no longer dropped on the ground.
+- Fixed PvP denial behavior to prevent unwanted knockback.
+- Reduced PvP denial message spam.
+- Improved protection update handling so commands and GUIs no longer show success if saving fails.
+- Improved consistency between protection data, lookup index and WorldGuard updates.
+
+### Supported
+
+- Spigot 1.21.x
+- Paper 1.21.x
+- Purpur 1.21.x
+- Pufferfish 1.21.x
+- Java 21
+- WorldGuard
+- WorldEdit
+- Vault
+- PlaceholderAPI
+
+### Notes
+
+- Paper is recommended for production servers.
+- Folia is not supported yet.
+- Older Minecraft versions before 1.21 are not officially supported.
+- This is still a beta release. Testing on a staging server is recommended before production usage.
+
+---
+
+## v1.0.0-beta.2
+
+Compatibility update for Minecraft 1.21.x servers.
+
+### Added
+
+- Added tested support for Spigot 1.21.x.
+- Confirmed compatibility with Paper 1.21.x.
+- Confirmed compatibility with Purpur 1.21.x.
+- Confirmed compatibility with Pufferfish 1.21.x.
+- Added `/lep info`, `/lep status` and `/lep version` diagnostic commands.
+- Added runtime platform detection.
+
+### Changed
+
+- Migrated the visual layer to Bukkit/Spigot-compatible APIs.
+- Removed mandatory Paper/Adventure runtime requirements from messages, GUIs and items.
+- Updated compatibility target from Paper-only to Spigot/Paper/Purpur/Pufferfish 1.21.x.
+- Paper became recommended instead of required.
+
+### Fixed
+
+- Fixed startup failure on Spigot caused by missing Adventure classes.
+- Improved GUI protection against shift-click, drag, hotbar swap, double click and ghost items.
+- Improved inventory synchronization when closing GUIs quickly on Spigot.
+
+---
+
+## v1.0.0-beta.1
+
+Initial public beta release.
+
+### Added
+
+- Protection stones.
+- Configurable protection sizes.
+- WorldGuard region integration.
+- WorldEdit dependency support.
+- Protection creation by placing stones.
+- Protection removal when breaking stones.
+- Configurable return of protection stones.
+- Configurable protection shop.
+- Vault economy support.
+- Teleport system.
+- Teleport warmup.
+- Teleport movement cancellation.
+- Protection border preview.
+- GUI-based protection management.
+- Protection list GUI.
+- Protection management GUI.
+- Members GUI.
+- Co-owner support.
+- Visitor rules.
+- Blocked player support.
+- Role-based protection rules.
+- Protection upgrades.
+- PlaceholderAPI support.
+- English language file.
+- Spanish language file.
+- Configuration validation.
+- Anti-exploit protections.
+- Protection diagnostics.
+- Repair commands.
+- Debug logging options.
+
+### Supported
+
+- Java 21
+- Minecraft 1.21.x
+- WorldGuard
+- WorldEdit
+- Vault
+- PlaceholderAPI

@@ -1,0 +1,13 @@
+# Illustrative model key: create this model in YOUR pack before enabling.
+# Configure resource-pack.mode: external and the matching UUID in config.yml.
+schema-version: 1
+pack-aware: true
+menus:
+  main:
+    title: "&8{name}"
+    fallback-title: ""
+    buttons:
+      management:
+        icon:
+          material: BOOK
+          item-model: "myserver:menu/manage"

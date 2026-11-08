@@ -1,5 +1,5 @@
 name: LederProtections
-version: '${version}'
+version: '1.5.0'
 main: com.alexisleder.lederprotections.LederProtections
 api-version: '1.21'
 author: AlexisLeder
@@ -11,6 +11,9 @@ depend:
   - WorldEdit
 
 softdepend:
+  - floodgate
+  - Geyser-Spigot
+  - HeadDatabase
   - Vault
   - LuckPerms
   - PlaceholderAPI
@@ -19,6 +22,9 @@ softdepend:
   - BlueMap
   - ItemsAdder
   - Oraxen
+  - Nexo
+  - CraftEngine
+  - ModelEngine
   - MythicMobs
   - Citizens
 
@@ -40,6 +46,10 @@ commands:
       - protectionwarps
 
 permissions:
+  lederprotections.inspect.others:
+    description: Allows inspecting the rules of other players' protections.
+    default: op
+
   lederprotections.admin:
     description: Allows access to administrative LederProtections commands.
     default: op
@@ -49,6 +59,7 @@ permissions:
       lederprotections.info: true
       lederprotections.update: true
       lederprotections.admin.protections: true
+      lederprotections.inspect.others: true
       lederprotections.admin.migrate: true
       lederprotections.admin.export: true
       lederprotections.admin.import: true
